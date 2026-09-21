@@ -1,6 +1,6 @@
 # 产品演示视频
 
-[下载 MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) · [演示实例内播放](https://thesaurus-extends-arrives-speaker.trycloudflare.com/static/demo.mp4)
+[下载 MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) · [演示实例内播放](https://intention-water-assistant-comparative.trycloudflare.com/static/demo.mp4)
 
 实际导出时长 **96.27 秒**，分辨率 **1440 × 1000**，H.264 编码。校验记录见 [视频文件属性](artifacts/demo-video.json)。
 

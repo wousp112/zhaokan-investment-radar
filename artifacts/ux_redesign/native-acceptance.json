@@ -1,0 +1,95 @@
+{
+  "recorded_at": "2026-09-21T12:22:50.013306+00:00",
+  "method": "本轮原生Chrome逐步操作及实际工具返回，非独立脚本运行统计",
+  "public_url": "https://intention-water-assistant-comparative.trycloudflare.com",
+  "backend_tests": {
+    "passed": 87,
+    "warnings": 2,
+    "log": "pytest.txt"
+  },
+  "presentation_tests": {
+    "passed": 10,
+    "foreign_timezone": "America/Los_Angeles",
+    "log": "presentation-tests.txt",
+    "foreign_timezone_log": "presentation-tests-us-timezone.txt"
+  },
+  "observed_flows": [
+    {
+      "name": "空状态与直接创建入口",
+      "observed": "新访客无任务，显示新建提醒及演示入口。",
+      "evidence": "02-workspace.png"
+    },
+    {
+      "name": "正数跌幅及组合规则确认",
+      "observed": "3、达到、下跌；包含正好3%；两条件满足任意一条。",
+      "evidence": "03-rule-review.png"
+    },
+    {
+      "name": "价格触发和去重",
+      "observed": "模拟跌幅3.8%产生1条条件提醒，继续下跌至4.5%仍为1条。"
+    },
+    {
+      "name": "提醒间隔内公告保留及补发",
+      "observed": "新业绩预告在间隔内保留；推进31分钟后条件提醒总数为2。"
+    },
+    {
+      "name": "行情故障及来源恢复",
+      "observed": "超时显示数据待恢复和无法判断；恢复后继续检查，条件提醒仍为2条。",
+      "evidence": "04-demo-fault.png"
+    },
+    {
+      "name": "逐条件依据",
+      "observed": "实际跌幅-4.5%、现价95.5、昨收100，保留来源和检查时间。",
+      "evidence": "05-evidence.png"
+    },
+    {
+      "name": "修改及恢复历史规则",
+      "observed": "3%改4%生成第2版；恢复3%生成第3版，旧版仍可查看。",
+      "evidence": "06-versions.png"
+    },
+    {
+      "name": "暂停与恢复",
+      "observed": "暂停显示检查已停止及恢复按钮；点击恢复后恢复监控状态。",
+      "evidence": "07-mobile.png"
+    },
+    {
+      "name": "手机布局与导航",
+      "observed": "390像素视口，页面scrollWidth=clientWidth=390；导航可打开并随页面切换收起。",
+      "evidence": "08-mobile-inbox.png"
+    },
+    {
+      "name": "手机公司冲突与重新生成",
+      "observed": "输入贵州茅台，补充宁德时代时提示冲突；清除补充公司后可继续。规则窗口scrollWidth=clientWidth=356。",
+      "evidence": "09-mobile-rule.png"
+    },
+    {
+      "name": "公司搜索",
+      "observed": "不存在的公司返回空结果；600519匹配1条测试任务。",
+      "evidence": "10-dashboard.png"
+    },
+    {
+      "name": "新公网入口",
+      "observed": "真实DeepSeek解析6126ms，创建模拟提醒，跌幅情景触发1条。",
+      "evidence": "12-public-demo.png"
+    }
+  ],
+  "public_console_errors_returned": [],
+  "visual_scope": {
+    "screenshots_inspected": [
+      "02-workspace.png",
+      "03-rule-review.png"
+    ],
+    "other_screenshots": "已保存；相关操作和尺寸通过DOM核对，未完成同状态参考图逐像素比对"
+  },
+  "not_completed": [
+    "新版演示视频未重录",
+    "更新后的独立浏览器验收脚本和录制脚本仅语法检查，未执行",
+    "归档浏览器操作被自动审批拦截，本轮未据此声明通过；后端归档测试通过"
+  ],
+  "source_hashes": {
+    "app/web/index.html": "f2188966ec65b1b46a04bc64c75e2c6a920dd3efc6baa04adc4f3833e2254e25",
+    "app/web/static/app.js": "d99b5232a647a24663c61307de813a28eb6e003cfb1a546650e486a516fe7d9a",
+    "app/web/static/style.css": "6dba44e3d7c06498208e3ce013cd1d48c060e78b62ef518fcdebd0d30a002706",
+    "app/web/static/presentation.js": "3ca18bc388da5c9f91ac6360e3dc95415fb1a51ccdfe610728e09f95c1dc3af0"
+  }
+}

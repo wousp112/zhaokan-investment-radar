@@ -1,95 +1,168 @@
-"""Exercise the actual browser UI. Does not install or rewrite app dependencies."""
-import asyncio
-import json
+"""Exercise the redesigned UI in an isolated test visitor. Uses only simulated market data.
+
+Run: python scripts/browser_acceptance.py --base-url http://127.0.0.1:8000
+Requires Playwright and its Chrome/Chromium browser. This is a repeatable test
+script; archived task records are deliberately retained as test evidence.
+"""
 import argparse
+import asyncio
 from datetime import datetime, timezone
+import json
 from pathlib import Path
 
 from playwright.async_api import async_playwright, expect
 
-arguments=argparse.ArgumentParser()
-arguments.add_argument('--url',default='http://127.0.0.1:8000')
-BASE=arguments.parse_args().url.rstrip('/')
-OUT=Path(__file__).resolve().parents[1]/'artifacts'
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / 'artifacts' / 'ux_redesign'
+PROMPT = '未来两周帮我盯住贵州茅台：日内跌幅达到3%，或者发布新的业绩预告，就提醒我。同一件事别反复提醒；如果监控出了问题，也告诉我。'
 
 
-async def main():
-    OUT.mkdir(exist_ok=True)
-    checks=[]; errors=[]
+async def run(base_url: str):
+    OUT.mkdir(parents=True, exist_ok=True)
+    results, errors = [], []
+    report = {'run_at': datetime.now(timezone.utc).isoformat(), 'base_url': base_url,
+              'market_data': 'replay', 'model': 'local parser', 'checks': results,
+              'javascript_errors': errors, 'status': 'running'}
     async with async_playwright() as p:
-        browser=await p.chromium.launch(headless=True,channel='chrome')
-        context=await browser.new_context(viewport={'width':1440,'height':1050},device_scale_factor=1)
-        page=await context.new_page()
-        page.on('pageerror',lambda error:errors.append(str(error)))
-        await page.goto(BASE,wait_until='networkidle')
-        await expect(page.locator('#target option')).to_have_count(12)
-        await page.screenshot(path=str(OUT/'desktop-empty.png'),full_page=True)
-        await page.locator('[data-example="golden"]').click()
-        await page.locator('#use-ai').uncheck()
-        await page.locator('#parse-button').click()
-        await expect(page.locator('#rule-dialog')).to_be_visible()
-        await expect(page.locator('[data-field="threshold"]')).to_have_value('-3')
-        await expect(page.locator('.review-condition')).to_have_count(2)
-        checks.append('自然语言生成两条可编辑规则')
-        await page.screenshot(path=str(OUT/'rule-review.png'),full_page=True)
-        await page.locator('#activate-button').click()
-        await expect(page.locator('#rule-dialog')).not_to_be_visible()
-        await expect(page.locator('.task-card')).to_have_count(1)
-        await expect(page.locator('#stat-alerts')).to_have_text('0')
-        await page.locator('.fault-lab summary').click()
-        await page.locator('[data-scenario="drop"]').click()
-        await expect(page.locator('.status.COOLING')).to_be_visible()
-        await expect(page.locator('#stat-alerts')).to_have_text('1')
-        checks.append('价格触发后进入冷却并写入站内提醒')
-        await page.locator('[data-scenario="deeper"]').click()
-        await expect(page.locator('#stat-alerts')).to_have_text('1')
-        checks.append('价格持续下跌不重复提醒')
-        await page.locator('[data-scenario="announcement"]').click()
-        await expect(page.locator('#stat-alerts')).to_have_text('1')
-        await page.locator('[data-scenario="advance"]').click()
-        await expect(page.locator('#stat-alerts')).to_have_text('2')
-        checks.append('冷却期间的新公告保留并在冷却后提醒')
-        await page.locator('[data-action="audit"]').first.click()
-        await expect(page.locator('#audit-body .evidence-card').first).to_be_visible()
-        await page.screenshot(path=str(OUT/'audit-evidence.png'),full_page=True)
-        checks.append('展示逐条件判断、来源、时间与规则版本')
-        await page.get_by_role('button',name='关闭检查记录',exact=True).click()
-        await page.locator('[data-scenario="timeout"]').click()
-        await expect(page.locator('.status.DEGRADED')).to_be_visible()
-        await page.screenshot(path=str(OUT/'desktop-fault.png'),full_page=True)
-        await page.locator('[data-scenario="recover"]').click()
-        await expect(page.locator('.status.COOLING')).to_be_visible()
-        checks.append('来源故障与恢复均有状态反馈')
-        await page.locator('[data-action="edit"]').click()
-        await page.locator('[data-field="threshold"]').fill('-4')
-        await page.locator('#activate-button').click()
-        await expect(page.locator('.ticker')).to_contain_text('v2')
-        checks.append('规则修改形成新版本')
-        await page.locator('[data-view="inbox"]').click()
-        await expect(page.locator('.alert-card').first).to_be_visible()
-        checks.append('站内提醒记录可访问')
-        await page.locator('[data-view="dashboard"]').click()
-        await page.screenshot(path=str(OUT/'desktop-dashboard.png'),full_page=True)
-        mobile=await browser.new_context(viewport={'width':390,'height':844},device_scale_factor=1,is_mobile=True,has_touch=True)
-        await mobile.add_cookies(await context.cookies())
-        mobile_page=await mobile.new_page()
-        await mobile_page.goto(BASE,wait_until='networkidle')
-        await expect(mobile_page.locator('.task-card')).to_have_count(1)
-        assert await mobile_page.evaluate('document.documentElement.scrollWidth <= window.innerWidth')
-        await mobile_page.screenshot(path=str(OUT/'mobile-dashboard.png'),full_page=True)
-        checks.append('390像素移动端无横向溢出')
-        other=await browser.new_context()
-        other_page=await other.new_page()
-        await other_page.goto(BASE,wait_until='networkidle')
-        await expect(other_page.locator('.task-card')).to_have_count(0)
-        checks.append('新浏览器会话看不到已有访客的任务')
-        assert not errors,errors
-        checks.append('无未捕获浏览器JavaScript异常')
-        await browser.close()
-    result={'run_at':datetime.now(timezone.utc).isoformat(),'checks':checks,'passed':len(checks),'javascript_errors':errors,'base_url':BASE}
-    output_name='browser-public-acceptance.json' if BASE.startswith('https://') else 'browser-acceptance.json'
-    (OUT/output_name).write_text(json.dumps(result,ensure_ascii=False,indent=2))
-    print(json.dumps(result,ensure_ascii=False,indent=2))
+        browser = await p.chromium.launch(channel='chrome', headless=True)
+        context = await browser.new_context(viewport={'width': 1440, 'height': 1000})
+        page = await context.new_page()
+        page.on('pageerror', lambda error: errors.append(str(error)))
+
+        def passed(name):
+            results.append({'name': name, 'passed': True})
+
+        async def task():
+            response = await context.request.get(base_url + '/api/tasks')
+            assert response.ok
+            tasks = (await response.json())['tasks']
+            assert len(tasks) == 1
+            return tasks[0]
+
+        async def scenario(key, expected):
+            await page.locator(f'[data-scenario="{key}"]').click()
+            await expect(page.locator('#scenario-result')).to_contain_text(expected)
+
+        try:
+            await page.goto(base_url, wait_until='networkidle')
+            await expect(page.locator('#new-alert')).to_be_enabled()
+            await expect(page.locator('#target option')).to_have_count(13)
+            await expect(page.locator('#task-list .task-card')).to_have_count(0)
+            passed('新访客显示空状态和明确的新建入口')
+            await page.locator('#new-alert').click()
+            await page.locator('#prompt').fill(PROMPT)
+            await page.locator('.input-options summary').click()
+            await page.locator('#use-ai').uncheck()
+            await page.locator('#target').select_option('300750.SZ')
+            await page.locator('#parse-button').click()
+            await expect(page.locator('#parse-error')).to_contain_text('公司不同')
+            await expect(page.locator('#prompt')).to_have_value(PROMPT)
+            await page.locator('#target').select_option('')
+            await page.locator('#parse-button').click()
+            await expect(page.locator('#rule-dialog')).to_be_visible()
+            await expect(page.locator('[data-field="threshold"]')).to_have_value('3')
+            await expect(page.locator('[data-boundary="0"]')).to_contain_text('包含正好3%')
+            await page.locator('[data-field="operator"]').select_option('>')
+            await expect(page.locator('[data-boundary="0"]')).to_contain_text('不包含正好3%')
+            await page.locator('[data-field="operator"]').select_option('>=')
+            passed('公司冲突可纠正，正数跌幅和严格比较可检查')
+            await page.locator('#activate-button').click()
+            await expect(page.locator('#rule-dialog')).not_to_be_visible()
+            await expect(page.locator('#task-list .task-card')).to_have_count(1)
+            created = await task()
+            assert created['spec']['conditions'][0]['threshold'] == -.03
+            assert created['spec']['conditions'][0]['operator'] == '<='
+            assert created['spec']['condition_logic'] == 'OR'
+            passed('确认后保存正确的负比例与OR规则')
+            await page.locator('[data-view="demo"]').click()
+            await scenario('drop', '条件提醒共1条')
+            await scenario('deeper', '相同条件已经提醒')
+            await scenario('announcement', '新公告已保留')
+            await scenario('advance', '条件提醒共2条')
+            passed('触发、同日去重、间隔内保留和公告补发')
+            await scenario('timeout', '暂时无法完整判断')
+            await page.locator('#demo-task [data-action="audit"]').click()
+            await expect(page.locator('.truth.unknown:visible')).to_contain_text('无法判断')
+            await page.get_by_role('button', name='关闭检查记录', exact=True).click()
+            await scenario('recover', '条件提醒共2条')
+            await expect(page.locator('#demo-task .status')).not_to_have_class('status DEGRADED')
+            passed('行情超时有逐条件依据，恢复后继续检查')
+            await page.locator('#demo-task [data-action="edit"]').click()
+            await page.locator('[data-field="threshold"]').fill('4')
+            await page.locator('#activate-button').click()
+            await expect(page.locator('#demo-task .rules-summary')).to_contain_text('4%')
+            edited = await task()
+            assert edited['spec']['conditions'][0]['threshold'] == -.04
+            assert edited['spec']['version'] == 2
+            await page.locator('#demo-task [data-action="audit"]').click()
+            await page.locator('#show-versions').click()
+            await expect(page.locator('.version-card')).to_have_count(2)
+            await page.locator('[data-action="rollback"]').click()
+            await expect(page.locator('.version-card')).to_have_count(3)
+            assert (await task())['spec']['conditions'][0]['threshold'] == -.03
+            await page.get_by_role('button', name='关闭检查记录', exact=True).click()
+            passed('修改和恢复历史条件形成新版本')
+            await page.locator('[data-view="dashboard"]').click()
+            await page.locator('#task-list [data-action="pause"]').click()
+            await expect(page.locator('#task-list .status')).to_have_text('已暂停')
+            paused = await task()
+            await page.wait_for_timeout(4200)
+            assert (await task())['state']['check_count'] == paused['state']['check_count']
+            await expect(page.locator('#task-list')).to_contain_text('检查已暂停')
+            await page.locator('#task-list [data-action="resume"]').click()
+            await expect(page.locator('#task-list [data-action="pause"]')).to_be_visible()
+            passed('暂停后不继续检查，恢复按钮与状态一致')
+            await page.locator('#task-search').fill('不存在的公司')
+            await expect(page.locator('#task-list .task-card')).to_have_count(0)
+            await page.locator('#task-search').fill('600519')
+            await expect(page.locator('#task-list .task-card')).to_have_count(1)
+            await page.locator('#task-search').fill('')
+            passed('按公司或代码搜索可正确过滤')
+            await page.locator('#task-list [data-action="archive"]').click()
+            await page.locator('#archive-dialog .secondary').click()
+            assert (await task())['state']['status'] != 'ARCHIVED'
+            await page.locator('#task-list [data-action="archive"]').click()
+            await page.locator('#confirm-archive').click()
+            await expect(page.locator('#task-list .status')).to_have_text('已归档')
+            await expect(page.locator('#task-list [data-action="resume"]')).to_have_count(0)
+            passed('归档可取消；确认后停止且保留记录')
+            await page.set_viewport_size({'width': 390, 'height': 844})
+            assert await page.locator('html').evaluate('(el)=>el.scrollWidth<=el.clientWidth')
+            await page.locator('#mobile-menu').click()
+            await expect(page.locator('#main')).to_have_attribute('inert', '')
+            await page.locator('#close-nav').click()
+            await expect(page.locator('#sidebar')).to_have_attribute('inert', '')
+            await page.locator('#new-alert').click()
+            await expect(page.locator('#compose-dialog')).to_be_visible()
+            assert await page.locator('#compose-dialog').evaluate('(el)=>el.scrollWidth<=el.clientWidth')
+            await page.keyboard.press('Escape')
+            await expect(page.locator('#compose-dialog')).not_to_be_visible()
+            await page.screenshot(path=str(OUT/'script-mobile.png'))
+            passed('390像素无横向溢出，导航和键盘关闭正常')
+            other = await browser.new_context()
+            second = await other.new_page()
+            await second.goto(base_url, wait_until='networkidle')
+            await expect(second.locator('#task-list .task-card')).to_have_count(0)
+            await other.close()
+            passed('其他访客无法看到当前会话任务')
+            assert not errors, errors
+            passed('主链路没有未捕获脚本异常')
+            report['status'] = 'passed'
+        except Exception as error:
+            report['status'] = 'failed'
+            report['error'] = str(error)
+            await page.screenshot(path=str(OUT/'script-failure.png'), full_page=True)
+            raise
+        finally:
+            report['passed'] = len(results)
+            (OUT/'script-acceptance.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
+            await context.close()
+            await browser.close()
+    print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
-asyncio.run(main())
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--base-url', default='http://127.0.0.1:8000')
+    args = parser.parse_args()
+    asyncio.run(run(args.base_url.rstrip('/')))

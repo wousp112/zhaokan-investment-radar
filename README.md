@@ -2,19 +2,21 @@
 
 面向有自选股和明确研究关注点、无法全天盯盘的 A 股个人投资者。把自然语言转成可检查、可修改的监控规则，持续说明任务是否正常，以及为什么提醒、为什么没有提醒。
 
-**体验方式：** [打开产品](https://thesaurus-extends-arrives-speaker.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [演示视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
+**体验方式：** [打开产品](https://intention-water-assistant-comparative.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [v1.0.0历史视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
 
 公开体验当前使用本机服务与临时 Cloudflare Tunnel，地址依赖主机及通道持续运行。正式长期托管方案见 [部署说明](docs/DEPLOYMENT.md)。演示模式与真实数据模式相互隔离；界面不会把模拟行情显示成真实行情。
 
-![产品界面](artifacts/desktop-dashboard.png)
+![改版后的提醒工作台，截图使用模拟数据](artifacts/ux_redesign/10-dashboard.png)
 
 ## 先试这条任务
 
 > 未来两周帮我盯住贵州茅台：日内跌幅达到3%，或者发布新的业绩预告，就提醒我。同一件事别反复提醒；如果监控出了问题，也告诉我。
 
-选择“演示情景”，点击“跌幅 + 业绩预告”示例，再生成规则。核对公司、阈值、组合关系与冷却时间后激活。展开任务的“情景验证台”，依次注入跌幅、重复公告、行情超时和来源恢复；点击“查看依据”检查每个条件的判断。
+点击“新建提醒”，选择“跌幅 + 业绩预告”示例和“演示情景（模拟数据）”，再点击“查看规则”。核对公司、条件与结束时间后，点击“开始监控”。打开侧栏“演示体验”，依次测试下跌、新公告、行情超时和恢复；点击任务的“查看记录”检查逐条件依据。
 
 真实数据模式调用已配置的扶摇行情及 iFinD 公告服务。没有凭据、来源失败或数据不可用时，会显示相应状态，不切换为模拟行情。提醒保存在站内，当前没有邮件、短信或浏览器后台推送。
+
+使用步骤见 [用户指南](docs/USER_GUIDE.md)，界面对标和本轮验证见 [改版验收](docs/REDESIGN_ACCEPTANCE.md)。v1.0.0视频保留改版前画面，尚未重录。
 
 ## 已实现的闭环
 
@@ -52,6 +54,7 @@ python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
 pip install -r requirements-dev.txt
 python -m pytest -q --junitxml=artifacts/pytest-results.xml
 python scripts/test_process_recovery.py
+node --test tests/test_presentation.cjs
 ```
 
 浏览器测试额外需要 Playwright 和 Chrome；实际脚本见 `scripts/browser_acceptance.py`。真实模型评测见 `scripts/evaluate_ai.py`，会调用已配置模型并产生 API 使用量。

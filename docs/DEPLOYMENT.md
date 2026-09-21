@@ -8,6 +8,8 @@
 
 Cloudflare 将 Quick Tunnel 定位于测试与开发，不提供 SLA 或运行时间保证，见[官方说明](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/do-more-with-tunnels/trycloudflare/)。本项目没有把临时通道写成常驻云部署。
 
+2026年9月21日20:14（北京时间），旧临时入口返回1033，本地健康检查仍为ok。旧通道连接处于CLOSE_WAIT；重建后使用[当前体验地址](https://intention-water-assistant-comparative.trycloudflare.com/)，已通过公网浏览器的解析、创建与模拟触发验证。数据目录及应用进程保持原样。域名变化后浏览器会取得新的访客标识，原域名下的任务仍保存在服务器，但新地址不能自动读取原访客任务。
+
 ## 三种部署路径
 
 | 方式 | 需要准备 | 运行边界 |

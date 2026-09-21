@@ -11,6 +11,13 @@ jobs:
         with:
           python-version: '3.11'
       - run: pip install -r requirements-dev.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/test_presentation.cjs
+      - run: node --test tests/test_presentation.cjs
+        env:
+          TZ: America/Los_Angeles
       - run: python -m pytest -q --junitxml=artifacts/ci-tests.xml
         env:
           RADAR_AI_ENABLED: '0'

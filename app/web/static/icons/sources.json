@@ -1,0 +1,57 @@
+[
+  {
+    "file": "bell.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/bell.svg",
+    "sha256": "470d39082cfbf44f0b4b0588d8f9f1fd2c211b09dc60d0304e91a24a3aeef32e"
+  },
+  {
+    "file": "inbox.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/inbox.svg",
+    "sha256": "d6b2b01f2377ca301a6ba0a33f7055b4dc2d0c21a56cb6798956c658029c7b86"
+  },
+  {
+    "file": "help-circle.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/help-circle.svg",
+    "sha256": "0149afb36ec5442f4ab3fc4e37cd0639af9f794665bbce19a57de583bcb6bf24"
+  },
+  {
+    "file": "flask.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/flask.svg",
+    "sha256": "f126c4fd5c9935e03f808bdfeec2a3ac3a505f0d26c4fa4a821adfaeb6b0d825"
+  },
+  {
+    "file": "plus.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/plus.svg",
+    "sha256": "ea2630f3d4b4800ed9e1f2818b7064bb62b27943c482e739d76bd2320f82632d"
+  },
+  {
+    "file": "search.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/search.svg",
+    "sha256": "e579b69a4b978f702908a48b1bef74d9ac73df4679cb1a6074c567bec2748c41"
+  },
+  {
+    "file": "x.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/x.svg",
+    "sha256": "6b97b0d51512b84eee04c0644fd07059a9c21d537886cdb40ef48485d874abc3"
+  },
+  {
+    "file": "menu-2.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/menu-2.svg",
+    "sha256": "a0080a4db00a4168cfea54a74724e4147cbd9d003f65e70fa367ae797b9cfed8"
+  },
+  {
+    "file": "refresh.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/refresh.svg",
+    "sha256": "12927e445fd886d0e0fd538ba60fbea56ff8a456204481e233f77ad322e65062"
+  },
+  {
+    "file": "chevron-right.svg",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/icons/outline/chevron-right.svg",
+    "sha256": "26b321e42c7c7ed5d5161d9af061033df1d49ef33b5d2fc2309e2f6ee3d4c81a"
+  },
+  {
+    "file": "LICENSE",
+    "url": "https://raw.githubusercontent.com/tabler/tabler-icons/v3.47.0/LICENSE",
+    "sha256": "b740a1d46122672da62833e97f7e7c8a13fa85cbc7445b584b297cc00dde93db"
+  }
+]

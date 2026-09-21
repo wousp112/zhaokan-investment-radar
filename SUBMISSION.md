@@ -4,17 +4,19 @@
 
 | 提交物 | 入口 |
 | --- | --- |
-| 可交互 Web 产品 | [打开照看](https://thesaurus-extends-arrives-speaker.trycloudflare.com) |
+| 可交互 Web 产品 | [打开照看](https://intention-water-assistant-comparative.trycloudflare.com) |
 | 完整源代码与 README | [GitHub 仓库](https://github.com/wousp112/zhaokan-investment-radar) |
-| 96秒演示视频 | [下载 MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) |
+| 96秒历史演示视频（改版前界面） | [下载 MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) |
 | AI 使用与验证记录 | [AI_USAGE_AND_VERIFICATION.md](AI_USAGE_AND_VERIFICATION.md) |
 | 测试说明与原始证据 | [TESTING_AND_EVAL.md](TESTING_AND_EVAL.md)、[artifacts](artifacts/) |
 
+当前产品已采用新的提醒列表和规则设置页。历史视频尚未重录，提交前应补上与当前界面一致的视频。
+
 ## 建议体验顺序
 
-打开产品，选择“演示情景”和“跌幅 + 业绩预告”示例。生成规则后核对阈值与组合关系，确认激活。
+打开产品，点击“新建提醒”，选择“演示情景（模拟数据）”和“跌幅 + 业绩预告”示例。点击“查看规则”，核对条件后点击“开始监控”。
 
-展开任务的“情景验证台”，先查看未触发依据，再注入跌至3.8%、继续下跌、新公告、行情超时和恢复来源。冷却期间新公告会暂存，点击“推进31分钟”后再判断。修改规则形成新版本，旧判断仍可追溯。
+进入侧栏“演示体验”，先点击任务的“查看记录”了解未触发原因，再依次测试“下跌至3.8%”“继续下跌”“新业绩预告”“行情超时”和“恢复来源”。冷却期间新公告会暂存，点击“推进31分钟”后再判断。修改规则形成新版本，旧判断仍可追溯。
 
 ## 评审时需要知道的边界
 

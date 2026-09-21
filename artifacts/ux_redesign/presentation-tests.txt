@@ -1,0 +1,18 @@
+✔ display edits preserve all four operators, both directions and equality (0.541166ms)
+✔ down at least 3% includes -3%, while more than 3% excludes it (0.138833ms)
+✔ direction changes and positive prices save correct values (0.058125ms)
+✔ missing, non-finite, negative and invalid values cannot silently become a rule (0.131542ms)
+✔ Beijing date fields do not shift in a browser using a different timezone (2.121042ms)
+✔ paused, expired and archived schedules never claim to keep checking (0.122375ms)
+✔ search and lifecycle filters retain business meaning (0.168667ms)
+✔ demo audit actions use readable names without claiming market safety (0.421375ms)
+✔ cooldown copy only claims a saved announcement when one actually exists (0.190125ms)
+✔ fractional percentages display cleanly without silently rounding an existing rule (0.45925ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.416875
