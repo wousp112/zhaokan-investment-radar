@@ -1,0 +1,24 @@
+✔ opening welcome does not dismiss it; intentional skip survives a reload (1.208959ms)
+✔ starting and finishing the example persist without any task or identity data (0.636375ms)
+✔ blocked local storage falls back to session storage; both blocked still work (0.113333ms)
+✔ corrupt or unknown saved values do not break first use (0.077208ms)
+✔ tutorial cannot simulate real data or a changed company, threshold, or logical relation (0.0975ms)
+✔ only the corresponding simulated condition notification can complete the tutorial (0.064791ms)
+✔ display edits preserve all four operators, both directions and equality (0.493ms)
+✔ down at least 3% includes -3%, while more than 3% excludes it (0.121166ms)
+✔ direction changes and positive prices save correct values (0.055458ms)
+✔ missing, non-finite, negative and invalid values cannot silently become a rule (0.118459ms)
+✔ Beijing date fields do not shift in a browser using a different timezone (6.24375ms)
+✔ paused, expired and archived schedules never claim to keep checking (0.103375ms)
+✔ search and lifecycle filters retain business meaning (0.572375ms)
+✔ demo audit actions use readable names without claiming market safety (0.094584ms)
+✔ cooldown copy only claims a saved announcement when one actually exists (0.051916ms)
+✔ fractional percentages display cleanly without silently rounding an existing rule (0.122666ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 56.687333

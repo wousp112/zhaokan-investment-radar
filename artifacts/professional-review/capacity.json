@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-09-21T14:01:07.310300+00:00",
+  "build": {
+    "version": "1.1.0",
+    "source_sha256": "a91cb8c3cd90cc05e8a6bb0ea53084202397ef4a47d4c237118517fdb147e256"
+  },
+  "scope": "Isolated synthetic first-cycle probe; no real financial data or production SLA.",
+  "synthetic_io_seconds": {
+    "usual": 0.01,
+    "every_tenth_request": 0.25
+  },
+  "task_count": 120,
+  "completed_tasks": 120,
+  "elapsed_seconds": 1.446,
+  "peak_concurrent_fetches": 4,
+  "condition_notifications": 120,
+  "evaluation_records": 120,
+  "schedule_delay_p95_seconds": 1.861,
+  "check_duration_p95_ms": 252,
+  "pass_criteria": "All tasks finish their first check within 30s; one alert per task; at most four concurrent providers; no scheduler exception.",
+  "passed": true,
+  "review_database_touched": false
+}

@@ -1,0 +1,114 @@
+{
+  "recorded_at": "2026-09-21T14:23:47.859507+00:00",
+  "file": "artifacts/professional-review/demo-v1.1.mp4",
+  "format": "captioned screenshots from separate actual interaction steps",
+  "duration_seconds": 95.966667,
+  "width": 1440,
+  "height": 1160,
+  "codec": "h264",
+  "size_bytes": 1390613,
+  "sha256": "db035c8c50ff5c1e57d7bf545b87dc8397d82df72f905c8e3db06ea37a483f23",
+  "source_mode": "simulated financial data",
+  "audio": "none; simplified Chinese captions",
+  "decode_verified": true,
+  "visual_review": "Native image-view transport unavailable; dimensions and caption bounds checked. Human playback review still required.",
+  "ui_build_sha256": "a91cb8c3cd90cc05e8a6bb0ea53084202397ef4a47d4c237118517fdb147e256",
+  "chapters": [
+    {
+      "source": "artifacts/professional-review/14-natural-language.png",
+      "sha256": "d75721efe02b556e847b36f490a6a73e9fad1bf0fafb623c00701893ac595d56",
+      "at_seconds": 0,
+      "duration_seconds": 8,
+      "title": "写下关注条件",
+      "caption": "宁德时代下跌达到3%，或发布业绩预告。AI可选，发送范围会说明。"
+    },
+    {
+      "source": "artifacts/professional-review/15-ai-review.png",
+      "sha256": "b96bbfa969d801037c3b73b9896df574829c6cdb1632a48e801a6bbebdd2dc46",
+      "at_seconds": 8,
+      "duration_seconds": 8,
+      "title": "核对后再开启",
+      "caption": "公司、阈值和结束时间都可以修改。当前只是草稿，确认前不会检查。"
+    },
+    {
+      "source": "artifacts/professional-review/03-manual-current.png",
+      "sha256": "5e0c699d7df21d5ea1e74746796e6fc5b9773fda02e37bcd961fa4b50e36269a",
+      "at_seconds": 16,
+      "duration_seconds": 8,
+      "title": "也能直接选择条件",
+      "caption": "不确定怎么写时，可直接选择公司与条件，再核对后开启。"
+    },
+    {
+      "source": "artifacts/professional-review/04-no-trigger.png",
+      "sha256": "2aca30c2e2b7053b606153d8bd2f7e3b53114a4e78834c976e6d6fd941eecb93",
+      "at_seconds": 24,
+      "duration_seconds": 8,
+      "title": "未触发，也给依据",
+      "caption": "模拟价98.8元，昨收100元，下跌1.2%。未达到3%，也未发现新公告。"
+    },
+    {
+      "source": "artifacts/professional-review/05-triggered.png",
+      "sha256": "12ee3e20d0b889c9b29ba86eb679cda691a5b1f9ece24bc828d8af692eff8105",
+      "at_seconds": 32,
+      "duration_seconds": 8,
+      "title": "条件满足，保存通知",
+      "caption": "模拟下跌3.8%，实际生成一条提醒；继续下跌没有重复生成通知。"
+    },
+    {
+      "source": "artifacts/professional-review/06-announcement-held.png",
+      "sha256": "ccce8cd7162fe5a3b1eb770a0b753c9bba6387af71f993b8ea176e75fe7367ba",
+      "at_seconds": 40,
+      "duration_seconds": 8,
+      "title": "间隔内保留新公告",
+      "caption": "检查继续进行。新公告先保留，推进31分钟后再判断并补发。"
+    },
+    {
+      "source": "artifacts/professional-review/07-source-timeout.png",
+      "sha256": "aaf92de6a753667e6f64df1500335590b0f6eeab85df5a030276aa5ed649cf3f",
+      "at_seconds": 48,
+      "duration_seconds": 8,
+      "title": "来源异常时说清影响",
+      "caption": "行情超时后停止用该价格判断，保存异常通知；恢复后另存恢复通知。"
+    },
+    {
+      "source": "artifacts/professional-review/08-inbox.png",
+      "sha256": "065450c49023855a3086e88f83281a841cdc689e88b545af39f1dbfb48de468e",
+      "at_seconds": 56,
+      "duration_seconds": 8,
+      "title": "结果集中在提醒记录",
+      "caption": "条件满足、数据异常与恢复分开保存。目前通知在本网站查看。"
+    },
+    {
+      "source": "artifacts/professional-review/11-alert-feedback.png",
+      "sha256": "daad2da05dfe6c69d291f7ee71731a0faf42597e50768bc044a8c82247adbd2b",
+      "at_seconds": 64,
+      "duration_seconds": 8,
+      "title": "用户能反馈，也能撤回",
+      "caption": "打开后未读数减少。反馈写入服务器，不会改变股票监控条件。"
+    },
+    {
+      "source": "artifacts/professional-review/12-frozen-evidence.png",
+      "sha256": "2ebcdcc08167b33f7575d684b2928c0c7ab9333b2611bbdbc6e751b4ddd4f8fe",
+      "at_seconds": 72,
+      "duration_seconds": 8,
+      "title": "修改后保留原始证据",
+      "caption": "当前阈值改为4%后，原通知仍记录第1版3%条件和96.2元的触发价格。"
+    },
+    {
+      "source": "artifacts/professional-review/09-operating-report.png",
+      "sha256": "c680b5dc8823fed60e7255161b53ac369335281efcb38968cfa586628f447c96",
+      "at_seconds": 80,
+      "duration_seconds": 8,
+      "title": "运行结果有实际统计",
+      "caption": "检查、通知打开和反馈分别统计；演示时钟的推进不充当实际运行时长。"
+    },
+    {
+      "source": "artifacts/professional-review/10-no-live-samples.png",
+      "sha256": "799d99aad5b29084337dec0c8198633ddbc3519d2d4b332378b03643ae9fe28f",
+      "at_seconds": 88,
+      "duration_seconds": 8,
+      "title": "区分演示成绩与真实运行",
+      "caption": "真实记录无样本时不显示成功率。常驻托管和外部通知仍需补齐。"
+    }
+  ]
+}

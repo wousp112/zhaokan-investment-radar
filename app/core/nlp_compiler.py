@@ -41,6 +41,8 @@ def resolve_target(request):
     if len(found) > 1:
         raise Clarification('本次规则只监控一家公司，请分别创建任务。')
     if found:
+        if request.target and request.target != found[0]:
+            raise Clarification(f'文字中写了{found[0].name}，但选择了{request.target.name}。请统一公司后再继续。')
         return found[0]
     if re.search(r'\d{6}', request.prompt):
         raise Clarification('该股票代码尚未在当前标的列表中核对，请从列表选择。')
@@ -53,11 +55,11 @@ def local_extract(prompt):
     text = re.sub(r'\s+', '', prompt)
     conditions = []
     if re.search(r'(跌幅|下跌|跌|涨幅|上涨|涨)(?:低于|小于|不足|不超过|不高于|不低于)', text):
-        raise Clarification('本地解析器暂不处理这类涨跌幅比较。请使用“达到”或“超过”，或在规则 JSON 中明确比较关系。')
+        raise Clarification('请点击“直接选择条件”，选择涨跌方向和比较方式。也可以把文字写成“跌幅达到3%”或“跌幅超过3%”。')
     if re.search('市盈率|市净率|成本价|最高价|最低价|回撤|净利润|营收|融资余额|融券|买卖点|利空|利好|社交热度|新闻', text):
         raise Clarification('这句话包含当前尚未接入的指标。请单独保留价格、业绩公告、量比或明确日历条件。')
     if re.search(r'\d{1,2}月\d{1,2}日|明天|后天|星期[一二三四五六日天]|上午|下午|\d{1,2}:\d{2}',text):
-        raise Clarification('本地解析器无法可靠处理这组日历时间。请开启 AI 解析，或在规则 JSON 中明确设置时间。')
+        raise Clarification('请点击“直接选择条件”，添加“指定时间”并选择日期。也可以开启 AI 整理这段文字，再核对时间。')
     if re.search(r'忽略.{0,10}(指令|规则)|system.?prompt|api.?key|保证.{0,5}(收益|赚钱)|自动.{0,3}(买入|卖出|下单)', text, re.I):
         raise Clarification('这里仅创建事实监控提醒，不执行交易或收益承诺。请写明需要监控的条件。')
     if ('或者' in text or '或' in text) and ('同时' in text or '并且' in text):
@@ -84,7 +86,7 @@ def local_extract(prompt):
         op = {'大于':'>', '超过':'>', '高于':'>', '低于':'<', '小于':'<', '不高于':'<=', '<=':'<=', '≤':'<='}.get(heat[1], '>=')
         conditions.append(Condition(id='heat_ratio', type='HEAT', threshold=float(heat[2]), operator=op))
     if not conditions:
-        raise Clarification('请写出可检查的条件，例如“日内跌幅达到3%”或“发布新的业绩预告”。日历条件可在规则 JSON 中设置。')
+        raise Clarification('请写明发生什么时提醒，例如“跌幅达到3%”或“发布新的业绩预告”。也可以点击“直接选择条件”。')
     days = 14
     duration = re.search(r'(?:未来|接下来|监控)([\d]+|[一二两三四五六七八九十])(?:个)?(天|周|星期|月)', text)
     if duration:
@@ -119,6 +121,8 @@ class Compiler:
         metadata = {'engine':'local_rules', 'model':None, 'usage':None, 'fallback_reason':None,
                     'ai_attempted':False, 'ai_response_received':False, 'prompt_version':'1.1'}
         # Safeguards apply even when a model is enabled.
+        if re.search(r'连续\s*[\d一二两三四五六七八九十]+\s*(天|日|分钟)|\d+\s*分钟内|先.{0,30}再|之后.{0,8}(上涨|下跌)|排除|除外',request.prompt):
+            raise Clarification('当前只能判断本次检查的条件，不能保证连续多天、先后顺序或排除条件。请拆成独立提醒，并在核对页选择“满足任意一条”或“全部条件满足”。')
         if re.search('市盈率|市净率|成本价|最高价|最低价|回撤|净利润|营收|融资余额|融券|买卖点|利空|利好|社交热度|新闻',request.prompt):
             raise Clarification('当前尚未接入这组指标，不能把它们省略后开始监控。请改为已支持的价格、公告、量比或日历条件。')
         if re.search(r'(?:不要|别|不)(?:在.{0,15}时)?提醒',request.prompt):

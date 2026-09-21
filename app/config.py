@@ -23,6 +23,7 @@ class Settings:
     session_secure: bool = field(default_factory=lambda: os.getenv('RADAR_SECURE_COOKIE', '0') == '1')
     max_tasks: int = 12
     max_total_tasks: int = 300
+    max_saved_tasks: int = 200
     request_timeout: float = 8.0
     llm_timeout: float = 35.0
 

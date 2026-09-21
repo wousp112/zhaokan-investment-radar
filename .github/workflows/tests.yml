@@ -14,8 +14,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --test tests/test_presentation.cjs
-      - run: node --test tests/test_presentation.cjs
+      - run: node --test tests/test_*.cjs
+      - run: node --test tests/test_*.cjs
         env:
           TZ: America/Los_Angeles
       - run: python -m pytest -q --junitxml=artifacts/ci-tests.xml

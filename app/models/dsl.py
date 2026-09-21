@@ -109,6 +109,8 @@ class TaskSpec(StrictModel):
     def unique_ids(self):
         if len({c.id for c in self.conditions}) != len(self.conditions):
             raise ValueError('条件 ID 不能重复。')
+        if any(c.type=='CALENDAR' and not self.validity.start_time <= c.at < self.validity.end_time for c in self.conditions):
+            raise ValueError('指定提醒时间需要在开始时间之后、结束时间之前。请调整提醒日期或延长监控期限。')
         return self
 
 
@@ -123,6 +125,7 @@ class CreateRequest(StrictModel):
     task_spec: TaskSpec
     activate: bool = True
     compilation_id: str | None = Field(default=None, max_length=60)
+    request_key: str | None = Field(default=None, min_length=16, max_length=100, pattern=r'^[a-zA-Z0-9_-]+$')
 
 
 class UpdateRequest(StrictModel):

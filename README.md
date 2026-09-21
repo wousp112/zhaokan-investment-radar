@@ -2,7 +2,9 @@
 
 面向有自选股和明确研究关注点、无法全天盯盘的 A 股个人投资者。把自然语言转成可检查、可修改的监控规则，持续说明任务是否正常，以及为什么提醒、为什么没有提醒。
 
-**体验方式：** [打开产品](https://intention-water-assistant-comparative.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [v1.0.0历史视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.0.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
+**体验方式：** [打开产品](https://intention-water-assistant-comparative.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [本轮约96秒视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
+
+本轮增加直接选择条件、通知已读与反馈、生成时的证据快照，以及当前访客的运行统计。完整的36项检查、补齐结果和上线前仍需的条件见[专业交付差距清单](docs/PROFESSIONAL_GAP_REVIEW.md)。
 
 公开体验当前使用本机服务与临时 Cloudflare Tunnel，地址依赖主机及通道持续运行。正式长期托管方案见 [部署说明](docs/DEPLOYMENT.md)。演示模式与真实数据模式相互隔离；界面不会把模拟行情显示成真实行情。
 
@@ -12,11 +14,11 @@
 
 > 未来两周帮我盯住贵州茅台：日内跌幅达到3%，或者发布新的业绩预告，就提醒我。同一件事别反复提醒；如果监控出了问题，也告诉我。
 
-点击“新建提醒”，选择“跌幅 + 业绩预告”示例和“演示情景（模拟数据）”，再点击“查看规则”。核对公司、条件与结束时间后，点击“开始监控”。打开侧栏“演示体验”，依次测试下跌、新公告、行情超时和恢复；点击任务的“查看记录”检查逐条件依据。
+首次打开可点击“用示例试一次”，跟随教程创建模拟提醒。也可点击“新建提醒”，选择“下跌或发布业绩预告”示例和“用模拟数据试用”，再点击“下一步：核对提醒”。核对公司、条件与结束时间后，点击“确认并开启提醒”。打开侧栏“演示体验”，依次测试下跌、新公告、行情超时和恢复。任务的“查看记录”说明每次检查的依据，通知旁的“查看这条提醒”保留生成时的结果。
 
 真实数据模式调用已配置的扶摇行情及 iFinD 公告服务。没有凭据、来源失败或数据不可用时，会显示相应状态，不切换为模拟行情。提醒保存在站内，当前没有邮件、短信或浏览器后台推送。
 
-使用步骤见 [用户指南](docs/USER_GUIDE.md)，界面对标和本轮验证见 [改版验收](docs/REDESIGN_ACCEPTANCE.md)。v1.0.0视频保留改版前画面，尚未重录。
+使用步骤见[用户指南](docs/USER_GUIDE.md)。本轮视频以实际操作截图制作成带字幕的分镜演示，各环节取自不同验证步骤；视频时长不用于衡量系统延迟。文件时长、编码和来源截图摘要见[本轮视频记录](artifacts/professional-review/demo-video.json)。v1.0.0视频保留为历史版本。
 
 ## 已实现的闭环
 
@@ -29,8 +31,11 @@
 | 中断与修改 | 持久化恢复、待提醒公告保留、规则版本、乐观锁、历史规则恢复为新版本 | SQLite 与任务接口 |
 | 可解释性 | 条件值、比较关系、来源、时间、规则版本、触发与未触发原因；证据导出 | 审计抽屉与 `/audit-trail`、`/export` |
 | 异常处理 | 超时、服务错误、限流、过期、冲突分别处理；不受影响的条件继续检查 | `app/adapters/` |
+| 通知使用与反馈 | 已读与未读、历史分页、生成时的证据、有用/打扰/判断有误及撤回 | 通知详情和 `alert_receipts` |
+| 运行与测量 | 连接/调度状态分开、立即检查、计划延迟、当前访客近7天统计 | `app/product.py`、`/api/workspace-report` |
+| 安全重试与容量 | 创建请求去重、归档释放未结束额度、整理记录归属校验 | 创建接口与SQLite事务 |
 
-日历条件支持明确的带时区时间，可通过 AI 解析或规则 JSON 设置；本地解析器不猜测复杂日历表达。量比使用统一条件模型，但真实行情快照没有该指标，当前只在演示模式提供有效量比数据。
+日历条件支持明确的带时区时间，可通过“直接选择条件”添加指定时间，也可通过AI或规则JSON设置；本地解析器不猜测复杂日历表达。量比只在演示中提供有效数据，真实任务会拒绝开启量比条件。
 
 ## 本地启动
 
@@ -54,7 +59,8 @@ python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --workers 1
 pip install -r requirements-dev.txt
 python -m pytest -q --junitxml=artifacts/pytest-results.xml
 python scripts/test_process_recovery.py
-node --test tests/test_presentation.cjs
+node --test tests/test_*.cjs
+python scripts/check_scheduler_capacity.py --tasks 120
 ```
 
 浏览器测试额外需要 Playwright 和 Chrome；实际脚本见 `scripts/browser_acceptance.py`。真实模型评测见 `scripts/evaluate_ai.py`，会调用已配置模型并产生 API 使用量。
@@ -111,9 +117,11 @@ AI 只参与关注点提取。行情计算、比较、状态流转和提醒发�
 
 最新可重放结果以 `artifacts/` 的原始记录为准。已建立自动化单元/API测试、真实 Chrome 页面操作验收、独立服务进程强制终止与恢复验证，以及外部模型和金融数据接口探测。
 
-本轮交付前，87 项单元/API 测试与 11 项公网 Chrome 交互检查通过。真实模型在20条固定用例上的最终复测为20条字段匹配，评测记录中的源码摘要与当前编译器一致。
+本轮后端回归113项通过，前端逻辑测试16项通过。当前编译器的20条固定用例复测中，20次获得模型输出且字段匹配；公网单条输入另验证到DeepSeek实际整理耗时6001毫秒。受限网络中的20次连接失败及本地回退保留为单独批次。
 
-同一源码还在GitHub的Ubuntu环境中通过自动化测试，并实际构建、启动Docker容器，完成HTTP主链路检查。[查看云端验证](https://github.com/wousp112/zhaokan-investment-radar/actions/runs/35580628435)。截图证据由本地Chrome通过公网入口生成，工作流仅保存这些已有截图的副本。
+隔离容量检查使用实际调度器和合成接口，120条任务全部完成首轮检查，并各保存一条通知；最高四路并发，首轮完成耗时1.446秒。该结果不代表真实金融接口吞吐或全天服务可用性。在线备份已在隔离目录恢复并核对完整性，原始证据位于[本轮检查目录](artifacts/professional-review/)。
+
+此前版本在GitHub的Ubuntu环境中通过自动化测试，并实际构建、启动Docker容器，完成HTTP主链路检查。[历史云端验证](https://github.com/wousp112/zhaokan-investment-radar/actions/runs/35580628435)。当前提交的远端验证以对应提交的Actions结果为准，不沿用历史运行作为当前源码的通过证明。
 
 真实模型测试与本地回退分别计数。首轮同组用例中，15次获得有效模型输出，5次连接失败后由本地解析器完成；这些记录保留原样。最终复测使用同一个固定用例集，不代表开放域准确率或独立留出集成绩。完整计数、时间与失败原因见 [验证说明](TESTING_AND_EVAL.md) 和 [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)。
 

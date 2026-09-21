@@ -29,3 +29,6 @@ artifacts/*-failed.png
 /artifacts/ui-parse-probe.png
 /app/web/static/demo.mp4
 /artifacts/release/
+/artifacts/professional-review/video-capture/
+/artifacts/professional-review/walkthrough-build/
+/artifacts/professional-review/transfer-reference.png

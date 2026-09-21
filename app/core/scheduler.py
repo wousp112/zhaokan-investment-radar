@@ -7,6 +7,7 @@ import copy
 import hashlib
 import logging
 import uuid
+import time
 
 from app.adapters import replay
 from app.core.audit_logger import dumps
@@ -42,13 +43,33 @@ class Engine:
                 'data_mode':task['spec']['data_mode'], 'kind':'lifecycle','action_taken':action,
                 'current_status':task['state']['status'],'conditions_evaluated':[],**extra}
 
-    async def create(self, spec, owner, activate=True, compilation_id=None):
+    def validate_capabilities(self, spec):
+        if spec.data_mode == 'live' and not self.settings.allow_live:
+            raise ValueError('此实例只开放模拟试用，请更改使用的数据。')
+        if spec.data_mode == 'live' and any(c.type == 'HEAT' for c in spec.conditions):
+            raise ValueError('真实行情暂不提供量比。请切换为“用模拟数据试用”，或删除量比条件后再开启。')
+
+    async def create(self, spec, owner, activate=True, compilation_id=None, request_key=None):
         async with self.lock:
+            payload_hash=hashlib.sha256(dumps({'spec':spec.model_dump(mode='json'),'activate':activate,'compilation_id':compilation_id}).encode()).hexdigest()
+            if request_key:
+                previous=self.store.creation_request(owner,request_key)
+                if previous:
+                    if previous['payload_hash'] != payload_hash:
+                        raise RuntimeError('这次保存的内容已经改变。请重新核对后再创建。')
+                    return self.owned(previous['task_id'],owner)
             existing = self.store.tasks(owner)
-            if len(existing) >= self.settings.max_tasks or len(self.store.tasks()) >= self.settings.max_total_tasks:
-                raise ValueError('体验实例的任务容量已满。每个浏览器最多创建12个任务。')
-            if spec.data_mode == 'live' and not self.settings.allow_live:
-                raise ValueError('此实例只开放演示模式。')
+            def occupies(task):
+                return task['state']['status'] not in ('ARCHIVED','EXPIRED') and datetime.fromisoformat(task['spec']['validity']['end_time']) > self.now_for(task)
+            if sum(occupies(t) for t in existing) >= self.settings.max_tasks:
+                raise ValueError(f'最多保留{self.settings.max_tasks}条未结束的提醒。请先归档不再需要的提醒，再创建。')
+            if sum(occupies(t) for t in self.store.tasks()) >= self.settings.max_total_tasks:
+                raise ValueError('体验服务的运行容量已满，请稍后再创建。已有提醒会继续检查。')
+            if len(existing) >= self.settings.max_saved_tasks:
+                raise ValueError(f'当前浏览器已有{self.settings.max_saved_tasks}条历史任务，已达到体验实例的保存上限。')
+            self.validate_capabilities(spec)
+            if compilation_id and not self.store.compilation(compilation_id,owner):
+                raise ValueError('找不到当前浏览器的文字整理记录。请重新整理，或直接选择条件创建。')
             if spec.validity.end_time <= self.clock():
                 raise ValueError('规则已经到期，请重新选择结束时间。')
             spec.version = 1
@@ -63,7 +84,8 @@ class Engine:
                              'event_cursor':iso(now),'last_decision':None,'event_baseline':None},
                     'simulation':replay.initial_frame(now),'compilation_id':compilation_id}
             self.store.save(task,self.audit(task,'用户确认并激活规则。' if activate else '保存待确认规则。'),
-                            version={'version':1,'at':iso(now),'author':'当前浏览器用户','reason':'首次创建','spec':task['spec']})
+                            version={'version':1,'at':iso(now),'author':'当前浏览器用户','reason':'首次创建','spec':task['spec']},
+                            creation_request=(request_key,payload_hash) if request_key else None)
             return task
 
     async def change_state(self, task_id, owner, action):
@@ -86,6 +108,7 @@ class Engine:
 
     async def edit(self, task_id, owner, spec, expected_version, reason='用户修改规则'):
         async with self.task_locks[task_id]:
+            self.validate_capabilities(spec)
             task = self.owned(task_id,owner)
             if task['spec']['version'] != expected_version:
                 raise RuntimeError('规则已被修改，请刷新后再保存。')
@@ -133,6 +156,9 @@ class Engine:
                 return task
             if not force and state['next_check_time'] and now < datetime.fromisoformat(state['next_check_time']):
                 return task
+            started=time.monotonic()
+            scheduled=state.get('next_check_time')
+            lateness=max(0,(now-datetime.fromisoformat(scheduled)).total_seconds()) if scheduled else 0
             if spec.data_mode == 'replay':
                 snapshot = replay.snapshot(task,now)
             else:
@@ -196,20 +222,25 @@ class Engine:
                 episode = uuid.uuid4().hex[:12]
                 state['health_episode'] = episode
                 alerts.append({'task_id':task_id,'fingerprint':'health:'+episode,'timestamp':iso(now),'kind':'health',
-                               'title':spec.target.name+' · 监控需要留意','message':health,'mode':spec.data_mode,'disclaimer':DISCLAIMER})
+                               'title':spec.target.name+' · 监控需要留意','message':health,'mode':spec.data_mode,'disclaimer':DISCLAIMER,
+                               'rule_version':spec.version,'evidence':results})
             elif not health and state['degradation_reason']:
                 alerts.append({'task_id':task_id,'fingerprint':'recovered:'+str(state['health_episode']),
                                'timestamp':iso(now),'kind':'recovery','title':spec.target.name+' · 数据检查已恢复',
-                               'message':'当前条件已有有效检查结果，继续按规则监控。','mode':spec.data_mode,'disclaimer':DISCLAIMER})
+                               'message':'当前条件已有有效检查结果，继续按规则监控。','mode':spec.data_mode,'disclaimer':DISCLAIMER,
+                               'rule_version':spec.version,'evidence':results})
             suspended = all(r.get('suspended') for r in results)
             status = 'DEGRADED' if health else ('COOLING' if cooling else ('SUSPENDED' if suspended else 'ACTIVE'))
             state.update(status=status,last_check_time=iso(now),next_check_time=iso(now+timedelta(seconds=spec.governance.frequency_seconds)),
                          check_count=state['check_count']+1,degradation_reason=health,last_decision=action)
             state['last_snapshot'] = snapshot
+            state['last_check_wall_at']=iso(self.clock())
             transitions.append(status)
             audit = self.audit(task,action,kind='evaluation',overall_triggered=truth,notification_sent=bool(fingerprints),
                                conditions_evaluated=results,condition_logic=spec.condition_logic,transitions=transitions,
-                               pending_event_count=len(pending),cooldown_until=state['cooldown_until'])
+                               pending_event_count=len(pending),cooldown_until=state['cooldown_until'],
+                               duration_ms=round((time.monotonic()-started)*1000),schedule_delay_seconds=round(lateness,3),
+                               requested_manually=force)
             self.store.save(task,audit,alerts,fingerprints)
             return task
 

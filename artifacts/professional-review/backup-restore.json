@@ -1,0 +1,23 @@
+{
+  "verified_at": "2026-09-21T13:34:09.854852+00:00",
+  "backup_file": "readiness-verified.sqlite3",
+  "sha256": "d242dee22defa563fa49abcbd7523d1e015566ff3a2e758f3163ef89f6e4c773",
+  "size_bytes": 3784704,
+  "snapshot": {
+    "integrity": "ok",
+    "row_counts": {
+      "alert_receipts": 0,
+      "alerts": 33,
+      "audits": 1759,
+      "compilations": 15,
+      "creation_requests": 0,
+      "metadata": 2,
+      "product_events": 0,
+      "seen": 21,
+      "tasks": 10,
+      "versions": 16
+    }
+  },
+  "restored_in_isolation": true,
+  "live_database_replaced": false
+}

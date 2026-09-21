@@ -1,0 +1,79 @@
+{
+  "date": "2026-09-21",
+  "method": "Native in-app browser UI actions and DOM readback; screenshot files saved",
+  "financial_data": "Interactive task checks use simulated prices and announcements",
+  "capture_app_sha256": "a91cb8c3cd90cc05e8a6bb0ea53084202397ef4a47d4c237118517fdb147e256",
+  "final_app_sha256": "923db0424607fa8bbc17bd0c1fe1b69c265321eef33b11f856cf3b9bced0322a",
+  "difference_after_capture": "Help-page text and current video entry updated; captured main interaction logic unchanged",
+  "checks": [
+    {
+      "area": "直接选择条件",
+      "observed": "选择宁德时代，添加3%跌幅和业绩预告后确认，实际创建一条模拟任务；直接创建不显示虚假的两步进度。",
+      "screenshot": "03-manual-current.png"
+    },
+    {
+      "area": "未触发依据",
+      "observed": "模拟98.8元相对昨收100元下跌1.2%；价格和公告均未满足；检查页显示当前条数及总数。",
+      "screenshot": "04-no-trigger.png"
+    },
+    {
+      "area": "触发与去重",
+      "observed": "模拟下跌3.8%后保存1条条件通知，继续下跌4.5%仍为1条通知。",
+      "screenshot": "05-triggered.png"
+    },
+    {
+      "area": "公告保留",
+      "observed": "间隔内新公告先保留，推进31分钟后条件通知增为2条。",
+      "screenshot": "06-announcement-held.png"
+    },
+    {
+      "area": "来源异常",
+      "observed": "行情超时后显示数据待恢复和无法完整判断；恢复后独立保存恢复通知。",
+      "screenshot": "07-source-timeout.png"
+    },
+    {
+      "area": "已读与反馈",
+      "observed": "打开本轮第34号模拟通知，未读数从6减到5；有用反馈保存成功，随后撤回。",
+      "screenshot": "11-alert-feedback.png"
+    },
+    {
+      "area": "冻结的历史依据",
+      "observed": "当前任务改为第2版4%后，旧通知仍保留第1版3%条件、96.2元与下跌3.8%的依据。",
+      "screenshot": "12-frozen-evidence.png"
+    },
+    {
+      "area": "模拟运行统计",
+      "observed": "只展示当前浏览器实际写入的记录，检查耗时与推进的演示时间分开。",
+      "screenshot": "09-operating-report.png"
+    },
+    {
+      "area": "真实记录空样本",
+      "observed": "真实记录为0，页面显示尚无检查样本，没有成功率。",
+      "screenshot": "10-no-live-samples.png"
+    },
+    {
+      "area": "手机窗口宽度",
+      "observed": "390像素视口中，通知窗口可视宽度与内容宽度均为341像素。",
+      "screenshot": "13-mobile-feedback.png"
+    },
+    {
+      "area": "实际模型整理",
+      "observed": "公网输入生成DeepSeek草稿，页面记录deepseek-flash和6001毫秒；草稿关闭，没有再次创建任务。",
+      "screenshot": "15-ai-review.png"
+    }
+  ],
+  "visual_review": "Image-return tools reported unsupported image input. Screenshots were not visually inspected. DOM and measured dimensions support the interaction claims.",
+  "feedback_end_state": "Test feedback withdrawn; original read timestamp retained",
+  "limits": [
+    "No real novice-user study",
+    "No full accessibility audit",
+    "No continuous trading-day reliability observation",
+    "No independent holdout language benchmark"
+  ],
+  "final_checks": {
+    "backend": "final-tests.xml",
+    "frontend": "frontend-final.txt",
+    "frontend_other_timezone": "frontend-pacific-final.txt",
+    "ci_environment": "ci-environment-fixed.xml"
+  }
+}

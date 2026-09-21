@@ -10,7 +10,7 @@ import re
 import time
 import uuid
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Query, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
@@ -21,6 +21,7 @@ from app.core.audit_logger import Store
 from app.core.nlp_compiler import Compiler, Clarification
 from app.core.scheduler import Engine
 from app.core.state_machine import STATES
+from app.product import install_product_routes
 from app.models.dsl import CreateRequest, InjectRequest, ParseRequest, RollbackRequest, SYMBOLS, TaskSpec, TickRequest, UpdateRequest, iso, utcnow
 
 
@@ -35,6 +36,7 @@ def create_app(settings=None):
     compiler = Compiler(settings)
     limits = defaultdict(deque)
     ai_lock = asyncio.Lock()
+    ai_slots = asyncio.Semaphore(2)
 
     @asynccontextmanager
     async def lifespan(application):
@@ -52,7 +54,7 @@ def create_app(settings=None):
             fcntl.flock(lock_file,fcntl.LOCK_UN)
             lock_file.close()
 
-    app = FastAPI(title='照看 · 投资监控与风险雷达',version='1.0.0',lifespan=lifespan)
+    app = FastAPI(title='照看 · 投资监控与风险雷达',version='1.1.0',lifespan=lifespan)
     app.state.store, app.state.engine, app.state.settings = store, engine, settings
 
     def error(message,status=400):
@@ -104,7 +106,11 @@ def create_app(settings=None):
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(request,exc):
-        return error('规则字段未通过校验：'+'；'.join(str(e['loc'][-1])+': '+e['msg'] for e in exc.errors()[:3]),422)
+        labels={'prompt':'关注条件','threshold':'提醒数值','end_time':'结束时间','start_time':'开始时间',
+                'frequency_seconds':'检查间隔','cooldown_minutes':'提醒间隔','conditions':'提醒条件',
+                'target':'关注公司','symbol':'股票代码','feedback':'反馈选项','expected_version':'修改版本'}
+        fields=[labels.get(str(e['loc'][-1]),'填写内容') for e in exc.errors()[:3]]
+        return error('请检查'+ '、'.join(dict.fromkeys(fields))+'。数值和时间需要在页面标注的范围内；未知选项不能保存。',422)
 
     @app.get('/')
     async def homepage():
@@ -112,8 +118,12 @@ def create_app(settings=None):
 
     @app.get('/api/health')
     async def health():
-        return {'status':'ok' if engine.last_error is None else 'attention','scheduler_enabled':settings.scheduler_enabled,
+        age=(utcnow()-datetime.fromisoformat(engine.heartbeat)).total_seconds() if engine.heartbeat else None
+        stale=settings.scheduler_enabled and (age is None or age>30)
+        return {'status':'attention' if engine.last_error is not None or stale else 'ok','scheduler_enabled':settings.scheduler_enabled,
                 'heartbeat':engine.heartbeat,'started_at':engine.started_at,'last_error':engine.last_error,
+                'heartbeat_age_seconds':round(age,1) if age is not None else None,'heartbeat_stale':stale,
+                'build':app.state.build,
                 'persistence':'SQLite WAL / atomic task + audit + inbox','notification_channel':'WEB_INBOX'}
 
     @app.get('/api/meta')
@@ -121,6 +131,7 @@ def create_app(settings=None):
         return {'symbols':[{'symbol':s,'name':n,'market':'A_SHARE'} for s,n in SYMBOLS.items()],
                 'states':STATES,'ai_available':bool(settings.deepseek_key and settings.ai_enabled),
                 'ai_model':settings.deepseek_model,'live_available':settings.allow_live,
+                'build':app.state.build,'limits':{'active_tasks':settings.max_tasks,'saved_tasks':settings.max_saved_tasks},
                 'data_disclosure':'演示与真实数据隔离。公告为有限覆盖的语义检索。量比目前仅演示模式提供。'}
 
     @app.get('/api/schema')
@@ -129,28 +140,46 @@ def create_app(settings=None):
 
     @app.post('/api/tasks/parse')
     async def parse(body:ParseRequest,request:Request):
+        requested=body.use_ai; reason=None; acquired=False
+        store.record_product_event(request.state.owner,'parse_requested',body.data_mode)
+        if body.use_ai and settings.ai_enabled and settings.deepseek_key:
+            try:
+                await asyncio.wait_for(ai_slots.acquire(),timeout=1)
+                acquired=True
+            except asyncio.TimeoutError:
+                body.use_ai=False; reason='AI_BUSY'
         async with ai_lock:
             day = utcnow().date().isoformat()
             count = int(store.metadata('ai_calls:'+day) or '0')
             if body.use_ai and settings.ai_enabled and settings.deepseek_key:
                 if count >= 100:
-                    body.use_ai = False
+                    body.use_ai = False; reason='DAILY_LIMIT'
                 else:
                     store.metadata('ai_calls:'+day,str(count+1))
-            try:
-                result = await compiler.compile(body)
-            except Clarification as exc:
+        try:
+            result = await compiler.compile(body)
+            engine.validate_capabilities(TaskSpec.model_validate(result['task_spec']))
+            result['compilation']['ai_requested']=requested
+            if reason:
+                result['compilation']['fallback_reason']=reason
+            store.record_compilation(result['compilation']['compilation_id'],request.state.owner,{'prompt':body.prompt,**result})
+            store.record_product_event(request.state.owner,'parse_ready',body.data_mode)
+            return result
+        except (ValueError,RuntimeError) as exc:
+            store.record_product_event(request.state.owner,'parse_failed',body.data_mode)
+            if isinstance(exc,Clarification):
                 if exc.compilation:
+                    exc.compilation['ai_requested']=requested
                     store.record_compilation(exc.compilation['compilation_id'], request.state.owner,
                         {'prompt':body.prompt, 'compilation':exc.compilation, 'clarification':str(exc)})
-                raise
-            store.record_compilation(result['compilation']['compilation_id'],request.state.owner,
-                                     {'prompt':body.prompt,**result})
-            return result
+            raise
+        finally:
+            if acquired:
+                ai_slots.release()
 
     @app.post('/api/tasks/create',status_code=201)
     async def create(body:CreateRequest,request:Request):
-        task = await engine.create(body.task_spec,request.state.owner,body.activate,body.compilation_id)
+        task = await engine.create(body.task_spec,request.state.owner,body.activate,body.compilation_id,body.request_key)
         return public_task(task)
 
     @app.get('/api/tasks')
@@ -158,8 +187,11 @@ def create_app(settings=None):
         return {'tasks':[public_task(t) for t in store.tasks(request.state.owner)],'server_time':iso(utcnow())}
 
     @app.get('/api/alerts')
-    async def alerts(request:Request):
-        return {'alerts':store.alerts(request.state.owner)}
+    async def alerts(request:Request,limit:int=Query(100,ge=1,le=100),before_id:int|None=Query(None,ge=1),unread_only:bool=False):
+        rows=store.alerts(request.state.owner,limit+1,before_id,unread_only)
+        more=len(rows)>limit; rows=rows[:limit]
+        return {'alerts':rows,'has_more':more,'next_cursor':rows[-1]['id'] if more else None,
+                **store.alert_counts(request.state.owner)}
 
     @app.get('/api/ai-records')
     async def ai_records(request:Request):
@@ -186,9 +218,12 @@ def create_app(settings=None):
         return public_task(await engine.change_state(task_id,request.state.owner,'archive'))
 
     @app.get('/api/tasks/{task_id}/audit-trail')
-    async def history(task_id:str,request:Request):
+    async def history(task_id:str,request:Request,limit:int=Query(100,ge=1,le=100),before_id:int|None=Query(None,ge=1)):
         engine.owned(task_id,request.state.owner)
-        return {'task_id':task_id,'history':store.audits(task_id)}
+        rows=store.audits(task_id,limit+1,before_id)
+        more=len(rows)>limit; rows=rows[:limit]
+        return {'task_id':task_id,'history':rows,'total':store.audit_count(task_id),
+                'has_more':more,'next_cursor':rows[-1]['audit_id'] if more else None}
 
     @app.get('/api/tasks/{task_id}/versions')
     async def versions(task_id:str,request:Request):
@@ -220,6 +255,7 @@ def create_app(settings=None):
     async def inject(body:InjectRequest,request:Request):
         return public_task(await engine.inject(body.task_id,request.state.owner,body.scenario,body.advance_seconds))
 
+    install_product_routes(app,store,engine,settings)
     static = ROOT/'app/web/static'
     static.mkdir(parents=True,exist_ok=True)
     app.mount('/static',StaticFiles(directory=static),name='static')

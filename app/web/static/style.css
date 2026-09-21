@@ -272,3 +272,56 @@ dialog.detail-drawer { position: fixed; inset: 0 0 0 auto; margin: 0; width: min
   dialog[open] { animation: none; }
   .sidebar { transition: none; }
 }
+
+/* Contextual help shares the existing visual system. */
+.tutorial-entry { margin-left: auto; color: var(--accent); }
+.topbar .tutorial-entry + .primary { margin-left: 0; }
+.step-label { color: var(--muted); font-size: 12px; margin-bottom: 3px; }
+#compose-form>label { display: block; font-weight: 500; margin-bottom: 9px; }
+#compose-form, #welcome-dialog .dialog-body { font-size: 14px; }
+#compose-form .field-hint, #compose-form summary { font-size: 13px; }
+#compose-form .examples button { font-size: 12px; }
+#compose-form .input-options { margin-top: 16px; padding-top: 12px; }
+#compose-form .checkbox-label { align-items: flex-start; }
+#compose-form .checkbox-label input { margin-top: 5px; }
+.context-tip { padding: 12px 14px; margin: 0 0 18px; border: 1px solid #dadbf2; border-radius: 6px; background: var(--accent-soft); line-height: 1.8; font-size: 13px; }
+.welcome-steps { list-style: none; padding: 0; margin: 24px 0; counter-reset: welcome; }
+.welcome-steps li { position: relative; padding-left: 39px; margin: 19px 0; counter-increment: welcome; }
+.welcome-steps li::before { content: counter(welcome); position: absolute; left: 0; top: 1px; border: 1px solid #dedeea; background: var(--surface); border-radius: 50%; width: 26px; height: 26px; text-align: center; line-height: 25px; color: var(--muted); font-size: 12px; }
+.welcome-steps strong { display: block; font-weight: 550; margin-bottom: 4px; }
+.welcome-steps span { display: block; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.welcome-note { background: var(--surface); border-radius: 6px; padding: 12px 14px; font-size: 12px; line-height: 1.8; color: var(--muted); }
+.walkthrough { margin: 22px 28px 0; padding: 20px; border: 1px solid #dadaee; border-radius: 8px; background: #f8f8fe; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.walkthrough>div:first-child { flex: 1 1 280px; }
+.walkthrough h2 { font-size: 16px; }
+.walkthrough p:not(.step-label):not(.inline-error) { color: #53555e; font-size: 13px; margin-top: 6px; line-height: 1.8; }
+.walkthrough-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.manual-entry { color: var(--muted); margin: 8px 0; font-size: 12px; }
+.manual-entry .text-button { color: var(--accent); }
+.remove-condition { float: right; font-size: 12px; }
+.condition-add { display: flex; gap: 10px; align-items: center; margin: 12px 0 20px; flex-wrap: wrap; }
+.condition-add select { flex: 1; min-width: 120px; }
+.inbox-toolbar { display: flex; gap: 18px; align-items: center; margin-top: 16px; flex-wrap: wrap; }
+.inbox-toolbar .checkbox-label { margin: 0; }
+.inbox-more { padding: 12px 28px; }
+.alert-card.unread { border-left: 3px solid var(--accent); }
+.feedback-box { margin: 20px 0; padding: 16px; border: 1px solid var(--line); border-radius: 6px; }
+.feedback-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.feedback-actions [aria-pressed="true"] { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+.report-values { margin: 18px 0; }
+.report-values>div { display: grid; grid-template-columns: 100px 1fr; gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.report-values dt { font-weight: 500; }
+.report-values dd { margin: 0; overflow-wrap: anywhere; }
+#alert-detail-body .context-tip { margin-top: 12px; }
+#report-body>p { margin-top: 12px; }
+#demo-view.guided-example .section-intro, #demo-view.guided-example .demo-controls { display: none; }
+#walkthrough-title:focus { outline: none; }
+@media (max-width: 780px) {
+ .walkthrough { margin: 16px 16px 0; padding: 16px; }
+ .tutorial-entry { font-size: 12px; padding: 6px 2px; }
+ #welcome-dialog .dialog-title { align-items: flex-start; }
+ #welcome-dialog .dialog-title h2 { font-size: 15px; }
+ #compose-form .dialog-actions { position: sticky; bottom: -18px; margin-left: -18px; margin-right: -18px; padding: 14px 18px; }
+ #compose-form .dialog-actions .primary { white-space: normal; }
+ .welcome-actions { flex-wrap: wrap; }
+}

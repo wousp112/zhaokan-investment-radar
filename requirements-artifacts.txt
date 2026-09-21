@@ -1,0 +1,2 @@
+# Optional: build the captioned walkthrough from captured product screenshots.
+Pillow==12.3.0

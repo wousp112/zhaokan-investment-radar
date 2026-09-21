@@ -1,0 +1,1552 @@
+{
+  "run_at": "2026-09-21T13:48:56.616305+00:00",
+  "total": 20,
+  "completed": 20,
+  "passed": 0,
+  "live_model_calls": 0,
+  "semantic_matches_including_fallback": 20,
+  "scope": "20条手工定义检查用例；非随机样本，不代表开放域准确率。仅模型实际返回且字段符合预期计通过。",
+  "compiler_source_sha256": "18807046aef268a63c70e89c59c110e9659209885469f8ae798831d66e39302a",
+  "records": [
+    {
+      "case_id": "AI01",
+      "prompt": "贵州茅台日内跌幅达到3%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.03,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "贵州茅台日内跌幅达到3%",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:37.270936Z",
+            "end_time": "2026-10-05T13:48:37.270936Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.03,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -3%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 47,
+          "compilation_id": "parse_f7c01ed3b27f4ed9",
+          "timestamp": "2026-09-21T21:48:37+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI02",
+      "prompt": "未来两周监控贵州茅台，下跌3%提醒",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.03,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来两周监控贵州茅台，下跌3%提醒",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:38.320449Z",
+            "end_time": "2026-10-05T13:48:38.320449Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.03,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -3%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 17,
+          "compilation_id": "parse_a785037a54244074",
+          "timestamp": "2026-09-21T21:48:38+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI03",
+      "prompt": "未来7天监控宁德时代，跌幅达到5%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.05,
+        "operator": "<=",
+        "days": 7,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来7天监控宁德时代，跌幅达到5%",
+          "target": {
+            "symbol": "300750.SZ",
+            "name": "宁德时代",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:39.340484Z",
+            "end_time": "2026-09-28T13:48:39.340484Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.05,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -5%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 17,
+          "compilation_id": "parse_8f94bdc27fc84c47",
+          "timestamp": "2026-09-21T21:48:39+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI04",
+      "prompt": "未来一周监控平安银行，下跌达到2%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.02,
+        "operator": "<=",
+        "days": 7,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来一周监控平安银行，下跌达到2%",
+          "target": {
+            "symbol": "000001.SZ",
+            "name": "平安银行",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:40.360165Z",
+            "end_time": "2026-09-28T13:48:40.360165Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.02,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -2%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 12,
+          "compilation_id": "parse_e6a15208267d45c9",
+          "timestamp": "2026-09-21T21:48:40+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI05",
+      "prompt": "未来三天监控招商银行，跌幅超过4%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.04,
+        "operator": "<",
+        "days": 3,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来三天监控招商银行，跌幅超过4%",
+          "target": {
+            "symbol": "600036.SH",
+            "name": "招商银行",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:41.375415Z",
+            "end_time": "2026-09-24T13:48:41.375415Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<",
+              "threshold": -0.04,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 < -4%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 16,
+          "compilation_id": "parse_ad107cd9bf5c4fc3",
+          "timestamp": "2026-09-21T21:48:41+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI06",
+      "prompt": "比亚迪上涨达到5%提醒我",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": 0.05,
+        "operator": ">=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "比亚迪上涨达到5%提醒我",
+          "target": {
+            "symbol": "002594.SZ",
+            "name": "比亚迪",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:42.394515Z",
+            "end_time": "2026-10-05T13:48:42.394515Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": ">=",
+              "threshold": 0.05,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 >= 5%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 14,
+          "compilation_id": "parse_fcb5f3ca912c48ff",
+          "timestamp": "2026-09-21T21:48:42+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI07",
+      "prompt": "中国平安涨幅超过2%提醒",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": 0.02,
+        "operator": ">",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "中国平安涨幅超过2%提醒",
+          "target": {
+            "symbol": "601318.SH",
+            "name": "中国平安",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:43.410338Z",
+            "end_time": "2026-10-05T13:48:43.410338Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": ">",
+              "threshold": 0.02,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 > 2%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 15,
+          "compilation_id": "parse_cc3fa40013e2437e",
+          "timestamp": "2026-09-21T21:48:43+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI08",
+      "prompt": "同花顺涨3%提醒",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": 0.03,
+        "operator": ">=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "同花顺涨3%提醒",
+          "target": {
+            "symbol": "300033.SZ",
+            "name": "同花顺",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:44.429301Z",
+            "end_time": "2026-10-05T13:48:44.429301Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": ">=",
+              "threshold": 0.03,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 >= 3%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 10,
+          "compilation_id": "parse_1b14ad8818044b2c",
+          "timestamp": "2026-09-21T21:48:44+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI09",
+      "prompt": "五粮液跌幅达到1.5%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.015,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "五粮液跌幅达到1.5%",
+          "target": {
+            "symbol": "000858.SZ",
+            "name": "五粮液",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:45.442059Z",
+            "end_time": "2026-10-05T13:48:45.442059Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.015,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -1.5%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 15,
+          "compilation_id": "parse_e7a8ac9882e947f7",
+          "timestamp": "2026-09-21T21:48:45+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI10",
+      "prompt": "长江电力上涨超过0.5%",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": 0.005,
+        "operator": ">",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "长江电力上涨超过0.5%",
+          "target": {
+            "symbol": "600900.SH",
+            "name": "长江电力",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:46.460906Z",
+            "end_time": "2026-10-05T13:48:46.460906Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": ">",
+              "threshold": 0.005,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 > 0.5%",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 14,
+          "compilation_id": "parse_787d36521069479d",
+          "timestamp": "2026-09-21T21:48:46+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI11",
+      "prompt": "贵州茅台股价低于1500元提醒",
+      "expected": {
+        "type": "PRICE",
+        "threshold": 1500,
+        "operator": "<",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "贵州茅台股价低于1500元提醒",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:47.478291Z",
+            "end_time": "2026-10-05T13:48:47.478291Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE",
+              "operator": "<",
+              "threshold": 1500.0,
+              "event_category": null,
+              "at": null,
+              "display_text": "现价 < 1500 元",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 14,
+          "compilation_id": "parse_b8e1fe7ef6df4f7e",
+          "timestamp": "2026-09-21T21:48:47+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI12",
+      "prompt": "宁德时代股价高于300元提醒",
+      "expected": {
+        "type": "PRICE",
+        "threshold": 300,
+        "operator": ">",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "宁德时代股价高于300元提醒",
+          "target": {
+            "symbol": "300750.SZ",
+            "name": "宁德时代",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:48.495272Z",
+            "end_time": "2026-10-05T13:48:48.495272Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE",
+              "operator": ">",
+              "threshold": 300.0,
+              "event_category": null,
+              "at": null,
+              "display_text": "现价 > 300 元",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 15,
+          "compilation_id": "parse_26db68da994f464b",
+          "timestamp": "2026-09-21T21:48:48+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI13",
+      "prompt": "美的集团价格不高于50元提醒",
+      "expected": {
+        "type": "PRICE",
+        "threshold": 50,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "美的集团价格不高于50元提醒",
+          "target": {
+            "symbol": "000333.SZ",
+            "name": "美的集团",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:49.514266Z",
+            "end_time": "2026-10-05T13:48:49.514266Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE",
+              "operator": "<=",
+              "threshold": 50.0,
+              "event_category": null,
+              "at": null,
+              "display_text": "现价 <= 50 元",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 5,
+          "compilation_id": "parse_41aa4d5d9ad54a68",
+          "timestamp": "2026-09-21T21:48:49+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI14",
+      "prompt": "工业富联股价不低于30元提醒",
+      "expected": {
+        "type": "PRICE",
+        "threshold": 30,
+        "operator": ">=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "工业富联股价不低于30元提醒",
+          "target": {
+            "symbol": "601138.SH",
+            "name": "工业富联",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:50.521862Z",
+            "end_time": "2026-10-05T13:48:50.521862Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE",
+              "operator": ">=",
+              "threshold": 30.0,
+              "event_category": null,
+              "at": null,
+              "display_text": "现价 >= 30 元",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 9,
+          "compilation_id": "parse_ea270f7bf7ed481c",
+          "timestamp": "2026-09-21T21:48:50+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI15",
+      "prompt": "中芯国际量比达到3时提醒",
+      "expected": {
+        "type": "HEAT",
+        "threshold": 3,
+        "operator": ">=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "中芯国际量比达到3时提醒",
+          "target": {
+            "symbol": "688981.SH",
+            "name": "中芯国际",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:51.534060Z",
+            "end_time": "2026-10-05T13:48:51.534060Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "heat_ratio",
+              "type": "HEAT",
+              "operator": ">=",
+              "threshold": 3.0,
+              "event_category": null,
+              "at": null,
+              "display_text": "成交量比 >= 3",
+              "source": "fuyao_snapshot"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 5,
+          "compilation_id": "parse_b8c97c1f16e649aa",
+          "timestamp": "2026-09-21T21:48:51+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI16",
+      "prompt": "未来两周贵州茅台跌3%或者发布新的业绩预告",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.03,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来两周贵州茅台跌3%或者发布新的业绩预告",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:52.541292Z",
+            "end_time": "2026-10-05T13:48:52.541292Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.03,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -3%",
+              "source": "fuyao_snapshot"
+            },
+            {
+              "id": "event_forecast",
+              "type": "ANNOUNCEMENT_EVENT",
+              "operator": "<=",
+              "threshold": null,
+              "event_category": "PERFORMANCE_FORECAST",
+              "at": null,
+              "display_text": "出现新的业绩预告",
+              "source": "ifind_search"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 15,
+          "compilation_id": "parse_15a38605cd954083",
+          "timestamp": "2026-09-21T21:48:52+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI17",
+      "prompt": "贵州茅台跌3%并且出现业绩预告",
+      "expected": {
+        "type": "PRICE_CHANGE_RATIO",
+        "threshold": -0.03,
+        "operator": "<=",
+        "days": 14,
+        "logic": "AND"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "贵州茅台跌3%并且出现业绩预告",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:53.560462Z",
+            "end_time": "2026-10-05T13:48:53.560462Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "AND",
+          "conditions": [
+            {
+              "id": "price_0",
+              "type": "PRICE_CHANGE_RATIO",
+              "operator": "<=",
+              "threshold": -0.03,
+              "event_category": null,
+              "at": null,
+              "display_text": "相对昨收涨跌幅 <= -3%",
+              "source": "fuyao_snapshot"
+            },
+            {
+              "id": "event_forecast",
+              "type": "ANNOUNCEMENT_EVENT",
+              "operator": "<=",
+              "threshold": null,
+              "event_category": "PERFORMANCE_FORECAST",
+              "at": null,
+              "display_text": "出现新的业绩预告",
+              "source": "ifind_search"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 6,
+          "compilation_id": "parse_13c08095c6e747a5",
+          "timestamp": "2026-09-21T21:48:53+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI18",
+      "prompt": "贵州茅台发布新的业绩预告提醒",
+      "expected": {
+        "type": "ANNOUNCEMENT_EVENT",
+        "threshold": null,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "贵州茅台发布新的业绩预告提醒",
+          "target": {
+            "symbol": "600519.SH",
+            "name": "贵州茅台",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:54.568620Z",
+            "end_time": "2026-10-05T13:48:54.568620Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "event_forecast",
+              "type": "ANNOUNCEMENT_EVENT",
+              "operator": "<=",
+              "threshold": null,
+              "event_category": "PERFORMANCE_FORECAST",
+              "at": null,
+              "display_text": "出现新的业绩预告",
+              "source": "ifind_search"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 10,
+          "compilation_id": "parse_8a716fe7cb534940",
+          "timestamp": "2026-09-21T21:48:54+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI19",
+      "prompt": "宁德时代发布新的业绩快报提醒",
+      "expected": {
+        "type": "ANNOUNCEMENT_EVENT",
+        "threshold": null,
+        "operator": "<=",
+        "days": 14,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "宁德时代发布新的业绩快报提醒",
+          "target": {
+            "symbol": "300750.SZ",
+            "name": "宁德时代",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:55.583705Z",
+            "end_time": "2026-10-05T13:48:55.583705Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "event_report",
+              "type": "ANNOUNCEMENT_EVENT",
+              "operator": "<=",
+              "threshold": null,
+              "event_category": "PERFORMANCE_REPORT",
+              "at": null,
+              "display_text": "出现新的业绩快报",
+              "source": "ifind_search"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 12,
+          "compilation_id": "parse_97cc7f33d44741be",
+          "timestamp": "2026-09-21T21:48:55+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    },
+    {
+      "case_id": "AI20",
+      "prompt": "未来十天比亚迪发布新公告就提醒",
+      "expected": {
+        "type": "ANNOUNCEMENT_EVENT",
+        "threshold": null,
+        "operator": "<=",
+        "days": 10,
+        "logic": "OR"
+      },
+      "result": {
+        "task_spec": {
+          "schema_version": "1.0",
+          "version": 1,
+          "user_intent_raw": "未来十天比亚迪发布新公告就提醒",
+          "target": {
+            "symbol": "002594.SZ",
+            "name": "比亚迪",
+            "market": "A_SHARE"
+          },
+          "validity": {
+            "start_time": "2026-09-21T13:48:56.600507Z",
+            "end_time": "2026-10-01T13:48:56.600507Z",
+            "timezone": "Asia/Shanghai"
+          },
+          "condition_logic": "OR",
+          "conditions": [
+            {
+              "id": "event_any",
+              "type": "ANNOUNCEMENT_EVENT",
+              "operator": "<=",
+              "threshold": null,
+              "event_category": "ANY_ANNOUNCEMENT",
+              "at": null,
+              "display_text": "出现新的公告",
+              "source": "ifind_search"
+            }
+          ],
+          "governance": {
+            "frequency_seconds": 60,
+            "trading_hours_only": true,
+            "cooldown_minutes": 30,
+            "deduplication_keys": [
+              "announcement_id",
+              "trading_date"
+            ],
+            "alert_channels": [
+              "WEB_INBOX"
+            ]
+          },
+          "data_mode": "replay"
+        },
+        "compilation": {
+          "engine": "local_rules",
+          "model": null,
+          "usage": null,
+          "fallback_reason": "ConnectError",
+          "ai_attempted": true,
+          "ai_response_received": false,
+          "prompt_version": "1.1",
+          "latency_ms": 15,
+          "compilation_id": "parse_8290073be26345fe",
+          "timestamp": "2026-09-21T21:48:56+08:00",
+          "validated": true
+        },
+        "warnings": [
+          "激活前请核对标的、比较符号与阈值。",
+          "提醒保存在站内；关闭页面后不发送系统推送。",
+          "本次使用本地规则解析，未由大模型生成。",
+          "演示模式使用明确标注的模拟数据，不代表市场行情。"
+        ]
+      },
+      "semantic_match": true,
+      "live_model": false,
+      "passed": false
+    }
+  ]
+}
