@@ -2,7 +2,7 @@
 
 核对日期：2026年9月21日。主要读者是检查本次实现的产品和开发协作者。
 
-[打开当前产品](https://intention-water-assistant-comparative.trycloudflare.com/) · [使用指南](USER_GUIDE.md) · [原始验收索引](../artifacts/ux_redesign/native-acceptance.json)
+[该次验收使用的地址](https://intention-water-assistant-comparative.trycloudflare.com/) · [当前提交入口](../SUBMISSION.md) · [使用指南](USER_GUIDE.md) · [原始验收索引](../artifacts/ux_redesign/native-acceptance.json)
 
 ## 已实现的变化
 

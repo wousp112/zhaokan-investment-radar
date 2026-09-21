@@ -1,0 +1,19 @@
+{
+  "recorded_at": "2026-09-21T15:33:16.591Z",
+  "product_url": "https://exhibitions-vienna-extending-liberty.trycloudflare.com/",
+  "method": "Native browser UI actions and DOM readback",
+  "onboarding": "First-visit tutorial appeared automatically; example rule confirmed and created",
+  "notification": "Simulated 3.8% decline generated one notification; detail preserved 96.2 price, 100 previous close, 3% threshold and absent earnings announcement",
+  "video_url": "https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.mp4",
+  "video_state": {
+    "currentTime": 20.640142,
+    "duration": 95.966667,
+    "error": null,
+    "height": 1160,
+    "paused": false,
+    "readyState": 4,
+    "width": 1440
+  },
+  "visual_inspection_completed": false,
+  "scope": "Simulated financial data and browser media decoder; no investment transaction or external notification"
+}

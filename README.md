@@ -2,7 +2,7 @@
 
 面向有自选股和明确研究关注点、无法全天盯盘的 A 股个人投资者。把自然语言转成可检查、可修改的监控规则，持续说明任务是否正常，以及为什么提醒、为什么没有提醒。
 
-**体验方式：** [打开产品](https://intention-water-assistant-comparative.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [本轮约96秒视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
+**体验方式：** [打开产品](https://exhibitions-vienna-extending-liberty.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [本轮约96秒视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
 
 本轮增加直接选择条件、通知已读与反馈、生成时的证据快照，以及当前访客的运行统计。完整的36项检查、补齐结果和上线前仍需的条件见[专业交付差距清单](docs/PROFESSIONAL_GAP_REVIEW.md)。
 

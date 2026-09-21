@@ -4,6 +4,8 @@
 
 ## 专业交付补齐后的验证
 
+应用源码提交`8ea0820`对应的[GitHub Actions运行](https://github.com/wousp112/zhaokan-investment-radar/actions/runs/35613941075)已完成，结果为success。v1.1.0发布中的视频附件状态为uploaded，大小1,390,613字节，SHA256为`db035c8c50ff5c1e57d7bf545b87dc8397d82df72f905c8e3db06ea37a483f23`，与本地视频一致。公开入口后续经历一次通道故障和恢复，详见[部署记录](docs/DEPLOYMENT.md)。
+
 2026年9月21日晚，后端113项回归全部通过，前端逻辑16项通过。新增覆盖创建重试、归档释放额度、已读与反馈、冻结通知依据、分页、来源能力限制、调度状态与访客隔离。原始结果见[后端JUnit](artifacts/professional-review/readiness-tests.xml)和[前端输出](artifacts/professional-review/frontend-tests.txt)。
 
 当前编译器重新完成20条固定模型用例，20次实际取得DeepSeek输出且字段匹配，见[联网复测](artifacts/ai-evaluation-readiness-network-20260921.json)。编译器SHA256为 `18807046aef268a63c70e89c59c110e9659209885469f8ae798831d66e39302a`。此前受限网络无法解析域名，20次连接失败、20次本地回退匹配，见[失败批次](artifacts/ai-evaluation-readiness-20260921.json)。该失败批次没有计为模型成功。

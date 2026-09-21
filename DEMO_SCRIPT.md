@@ -1,6 +1,6 @@
 # 本轮产品演示视频
 
-[下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [实例内播放](https://intention-water-assistant-comparative.trycloudflare.com/static/demo.mp4) · [本地MP4](artifacts/professional-review/demo-v1.1.mp4) · [文件与来源校验](artifacts/professional-review/demo-video.json)
+[下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [实例内播放](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.mp4) · [本地MP4](artifacts/professional-review/demo-v1.1.mp4) · [文件与来源校验](artifacts/professional-review/demo-video.json)
 
 时长95.97秒，1440×1160，H.264编码，无旁白，带简体中文字幕。视频采用本轮实际操作截图分镜，各环节来自不同的验证步骤。所有行情均为明确标注的模拟数据，未修改截图中的条件或结果，字幕放在原截图下方。视频经过完整解码检查；原生图像返回受限，人工观看的视觉验收仍待完成。
 
