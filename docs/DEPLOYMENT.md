@@ -31,7 +31,7 @@ curl http://127.0.0.1:8000/api/health
 
 容器基础镜像包含 Python 服务，默认不带本机 iFinD 查询模块及其私人配置。演示、DeepSeek 和扶摇可直接通过环境变量配置；真实公告接入需要部署方在合法授权的服务器上安装 Node 和 iFinD 模块，并通过 `IFIND_SCRIPT` 指定入口。私人凭据必须通过服务器秘密配置或只读挂载提供，不应写进镜像或源码。
 
-Docker 配置是否经过构建验证，以 `artifacts/` 的记录为准；提供配置本身不代表已经部署到常驻主机。
+Docker镜像已在GitHub的Ubuntu运行器中完成构建和启动，并通过HTTP主链路检查。见[容器检查记录](../artifacts/ci-baseline/container-smoke.json)与[对应运行记录](../artifacts/ci-baseline/run.json)。这次验证使用临时CI容器，没有将产品部署到常驻云主机。
 
 ## 配置项
 
