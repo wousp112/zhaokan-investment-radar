@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="把自然语言关注点变成持续运行、可检查、可修改的投资监控规则。">
+  <title>照看 · 投资监控与风险雷达</title>
+  <link rel="stylesheet" href="/static/style.css"><script defer src="/static/app.js"></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="照看首页"><span class="brandmark">◎</span><span>照看<small>INVESTMENT RADAR</small></span></a>
+  <p class="nav-caption">我的工作台</p>
+  <button class="nav-item active" data-view="dashboard"><span>◫</span>监控任务 <span id="nav-count" class="nav-count">0</span></button>
+  <button class="nav-item" data-view="inbox"><span>◉</span>提醒记录 <span id="inbox-count" class="nav-count">0</span></button>
+  <button class="nav-item" data-view="about"><span>◇</span>运行说明</button>
+  <div class="sidebar-bottom"><span class="dot" id="service-dot"></span><span id="service-state">正在连接服务</span><p>每次检查都有记录<br>每条提醒都有依据</p><span class="project-label">同花顺校招项目 · Qiyao</span></div>
+</aside>
+<main>
+  <header class="topbar"><div class="breadcrumbs">投资监控 <span>/</span> <strong id="page-title">我的任务</strong></div><div class="top-right"><span class="pill" id="global-mode">演示与真实数据隔离</span><span class="avatar">Q</span></div></header>
+  <div class="content">
+    <section id="dashboard-view">
+      <div class="intro"><div><div class="eyebrow">YOUR WATCHLIST, WITH REASONS</div><h1>关注点说清楚，<br>每次变化有据可查。</h1><p>创建持续监控，随时查看为什么提醒、为什么没提醒。</p></div><div class="radar-art" aria-hidden="true"><i></i><i></i><i></i><b></b><em></em><span>持续检查</span></div></div>
+      <div class="stats"><div><span>我的监控任务</span><strong id="stat-total">0</strong><small>当前浏览器独立保存</small></div><div><span>正在监控</span><strong id="stat-active">0</strong><small>包括冷却与降级运行</small></div><div><span>条件提醒</span><strong id="stat-alerts">0</strong><small>同一事件自动去重</small></div><div><span>最近检查</span><strong id="stat-check" class="stat-time">尚无检查</strong><small id="heartbeat">正在读取调度心跳</small></div></div>
+      <section class="composer panel">
+        <div class="section-title"><h2><span class="blue-square">✦</span> 新建监控</h2><span class="muted">01 说出关注点 → 02 核对规则 → 03 持续检查</span></div>
+        <label class="sr-only" for="prompt">需要监控的关注点</label><textarea id="prompt" rows="3" placeholder="例如：未来两周，日内跌幅达到3%，或者发布新的业绩预告就提醒我。"></textarea>
+        <div class="examples"><span>试一个场景</span><button data-example="golden">跌幅 + 业绩预告</button><button data-example="price">突破价格</button><button data-example="heat">量比变化</button></div>
+        <div class="compose-controls"><div class="control-group"><label for="target">关注公司</label><select id="target" aria-label="关注公司"></select></div><div class="control-group"><label for="mode">数据模式</label><select id="mode"><option value="replay">演示情景</option><option value="live">真实数据</option></select></div><label class="ai-toggle"><input id="use-ai" type="checkbox" checked>AI 理解关注点</label><button id="parse-button" class="primary">生成规则 <span>↗</span></button></div>
+        <div class="mode-notice" id="mode-notice">演示情景使用模拟行情，可验证触发、冷却与故障恢复。页面不会展示为真实行情。</div>
+      </section>
+      <section class="task-section"><div class="section-title"><h2>监控任务 <span class="muted" id="task-total">0</span></h2><button class="text-button" id="refresh-button">刷新状态 ↻</button></div><div id="task-list"></div></section>
+    </section>
+    <section id="inbox-view" hidden><div class="view-heading"><div class="eyebrow">NOTIFICATION HISTORY</div><h1>提醒记录</h1><p>条件提醒和监控异常分开记录。所有提醒保存在站内。</p></div><div id="alert-list"></div></section>
+    <section id="about-view" hidden><div class="view-heading"><div class="eyebrow">HOW YOUR MONITOR RUNS</div><h1>知道它在做什么</h1><p>规则由你确认，后台持续检查，判断过程可回看。</p></div><div class="about-grid"><article class="panel"><h2>AI 负责理解，程序负责判断</h2><p>AI 将关注点转换成结构化规则。价格计算、条件判断和提醒去重由程序执行。修改规则会形成新版本，历史记录保留当时使用的规则。</p></article><article class="panel"><h2>数据异常会明确显示</h2><p>过期、冲突或获取失败的数据不会被用于价格判断。某个来源异常，其余条件仍会检查。“无法判断”与“条件不满足”分别记录。</p></article><article class="panel"><h2>冷却期间继续检查</h2><p>价格条件按规则版本和交易日去重，公告按事件指纹去重。冷却期新发现的公告暂存，冷却结束后重新判断。站内提醒与任务状态一起保存，重启后恢复。</p></article><article class="panel"><h2>当前版本的边界</h2><p>支持列表中的12只A股。真实公告使用 iFinD 语义检索，可能漏检，日期可能只有天级精度。首次查询建立公告基线；此后新发现的结果可提醒。量比仅有演示数据。缺失的历史价格路径无法重建。</p></article><article class="panel"><h2>页面关闭后会怎样</h2><p>服务器运行期间任务会继续检查，提醒保存在站内。当前没有邮件、短信和浏览器后台推送。清除浏览器 Cookie 会失去这个浏览器的任务访问凭据。匿名体验暂不支持跨设备登录。</p></article><article class="panel"><h2>使用与数据边界</h2><p>本产品用于验证事实监控流程，不执行交易。演示数据始终单独标注。接口凭据仅由服务器使用。公开体验有调用和任务容量限制，不提供交易时效保证。</p><p class="disclaimer">仅监控客观事实，不构成投资建议。</p></article></div></section>
+    <footer><span>照看 · 可配置投资监控与风险雷达</span><span>仅监控客观事实，不构成投资建议。</span></footer>
+  </div>
+</main>
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<dialog id="rule-dialog"><form method="dialog" class="dialog-title"><div><span class="eyebrow">REVIEW BEFORE ACTIVATION</span><h2 id="rule-title">核对监控规则</h2></div><button class="icon-button" aria-label="关闭规则确认">×</button></form><div id="rule-body"></div><div class="dialog-actions"><button id="cancel-rule" class="secondary">取消</button><button id="activate-button" class="primary">确认并开始监控</button></div></dialog>
+<dialog id="audit-dialog"><form method="dialog" class="dialog-title"><div><span class="eyebrow">EVERY CHECK LEAVES EVIDENCE</span><h2 id="audit-title">检查记录</h2></div><button class="icon-button" aria-label="关闭检查记录">×</button></form><div class="drawer-tabs"><button id="show-audits" class="active">检查记录</button><button id="show-versions">规则版本</button><a id="export-link" class="text-button" download>导出证据</a></div><div id="audit-body"></div></dialog>
+</body></html>

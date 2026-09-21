@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-09-21T08:36:55.287823+00:00",
+  "passed": true,
+  "method": "真实独立服务进程SIGKILL后重新启动，使用同一SQLite目录",
+  "checks": [
+    "冷却状态保留",
+    "待提醒公告保留",
+    "已提醒价格不重复",
+    "冷却后公告正常送达",
+    "重启恢复审计可见"
+  ],
+  "before_trigger_count": 1,
+  "after_restart_trigger_count": 1,
+  "after_cooldown_trigger_count": 2,
+  "scope": "一次本地进程强制终止测试；不覆盖断电、磁盘损坏、多节点故障或长期SLA。"
+}

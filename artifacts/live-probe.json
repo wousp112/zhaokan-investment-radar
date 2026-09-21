@@ -1,0 +1,96 @@
+{
+  "checked_at": "2026-09-21T07:46:46.990061+00:00",
+  "compiler": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "version": 1,
+      "user_intent_raw": "未来两周帮我盯住贵州茅台：日内跌幅达到3%，或者发布新的业绩预告，就提醒我。",
+      "target": {
+        "symbol": "600519.SH",
+        "name": "贵州茅台",
+        "market": "A_SHARE"
+      },
+      "validity": {
+        "start_time": "2026-09-21T07:46:28.349406Z",
+        "end_time": "2026-10-05T07:46:28.349406Z",
+        "timezone": "Asia/Shanghai"
+      },
+      "condition_logic": "OR",
+      "conditions": [
+        {
+          "id": "price_drop_3pct",
+          "type": "PRICE_CHANGE_RATIO",
+          "operator": "<=",
+          "threshold": -0.03,
+          "event_category": null,
+          "at": null,
+          "display_text": "相对昨收涨跌幅 <= -3%",
+          "source": "fuyao_snapshot"
+        },
+        {
+          "id": "new_performance_forecast",
+          "type": "ANNOUNCEMENT_EVENT",
+          "operator": "<=",
+          "threshold": null,
+          "event_category": "PERFORMANCE_FORECAST",
+          "at": null,
+          "display_text": "出现新的业绩预告",
+          "source": "ifind_search"
+        }
+      ],
+      "governance": {
+        "frequency_seconds": 60,
+        "trading_hours_only": true,
+        "cooldown_minutes": 30,
+        "deduplication_keys": [
+          "announcement_id",
+          "trading_date"
+        ],
+        "alert_channels": [
+          "WEB_INBOX"
+        ]
+      },
+      "data_mode": "replay"
+    },
+    "compilation": {
+      "engine": "deepseek",
+      "model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 816,
+        "completion_tokens": 1288,
+        "total_tokens": 2104,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1171
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 816
+      },
+      "fallback_reason": null,
+      "latency_ms": 8453,
+      "compilation_id": "parse_912db9b740154d49",
+      "timestamp": "2026-09-21T15:46:28+08:00",
+      "validated": true
+    },
+    "warnings": [
+      "激活前请核对标的、比较符号与阈值。",
+      "提醒保存在站内；关闭页面后不发送系统推送。",
+      "演示模式使用明确标注的模拟数据，不代表市场行情。"
+    ]
+  },
+  "quote": {
+    "source": "扶摇 / 同花顺金融数据 API",
+    "mode": "live",
+    "observed_at": null,
+    "market_open": false,
+    "calendar_source": "扶摇交易日历",
+    "request_id": null,
+    "heat": null,
+    "status": "http_error",
+    "reason": "行情服务返回 HTTP 429。",
+    "attempts": 1
+  },
+  "scope": "单个黄金用例和单次报价探测，不代表总体准确率或长期可用性。"
+}

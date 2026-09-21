@@ -1,0 +1,12 @@
+.git
+.env
+.env.*
+data
+.venv
+__pycache__
+.pytest_cache
+artifacts
+AGENTS.md
+CODEX_PROMPT.md
+docs
+tests

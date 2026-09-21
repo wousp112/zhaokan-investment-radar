@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-09-21T08:28:24.198756+00:00",
+  "status": 200,
+  "body": {
+    "task_spec": {
+      "schema_version": "1.0",
+      "version": 1,
+      "user_intent_raw": "未来两周帮我盯住贵州茅台：日内跌幅达到3%，或者发布新的业绩预告，就提醒我。同一件事别反复提醒；如果监控出了问题，也告诉我。",
+      "target": {
+        "symbol": "600519.SH",
+        "name": "贵州茅台",
+        "market": "A_SHARE"
+      },
+      "validity": {
+        "start_time": "2026-09-21T08:28:16.373514Z",
+        "end_time": "2026-10-05T08:28:16.373514Z",
+        "timezone": "Asia/Shanghai"
+      },
+      "condition_logic": "OR",
+      "conditions": [
+        {
+          "id": "moutai_daily_drop_3pct",
+          "type": "PRICE_CHANGE_RATIO",
+          "operator": "<=",
+          "threshold": -0.03,
+          "event_category": null,
+          "at": null,
+          "display_text": "相对昨收涨跌幅 <= -3%",
+          "source": "fuyao_snapshot"
+        },
+        {
+          "id": "moutai_new_performance_forecast",
+          "type": "ANNOUNCEMENT_EVENT",
+          "operator": "<=",
+          "threshold": null,
+          "event_category": "PERFORMANCE_FORECAST",
+          "at": null,
+          "display_text": "出现新的业绩预告",
+          "source": "ifind_search"
+        }
+      ],
+      "governance": {
+        "frequency_seconds": 60,
+        "trading_hours_only": true,
+        "cooldown_minutes": 30,
+        "deduplication_keys": [
+          "announcement_id",
+          "trading_date"
+        ],
+        "alert_channels": [
+          "WEB_INBOX"
+        ]
+      },
+      "data_mode": "replay"
+    },
+    "compilation": {
+      "engine": "deepseek",
+      "model": "deepseek-flash",
+      "usage": {
+        "prompt_tokens": 907,
+        "completion_tokens": 1474,
+        "total_tokens": 2381,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1350
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 907
+      },
+      "fallback_reason": null,
+      "latency_ms": 7821,
+      "compilation_id": "parse_54ba875bbd84424b",
+      "timestamp": "2026-09-21T16:28:16+08:00",
+      "validated": true
+    },
+    "warnings": [
+      "激活前请核对标的、比较符号与阈值。",
+      "提醒保存在站内；关闭页面后不发送系统推送。",
+      "演示模式使用明确标注的模拟数据，不代表市场行情。"
+    ]
+  },
+  "dialog_visible": true,
+  "toast": ""
+}

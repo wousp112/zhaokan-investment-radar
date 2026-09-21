@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-09-21T08:14:06.533660+00:00",
+  "quote": {
+    "source": "扶摇 / 同花顺金融数据 API",
+    "mode": "live",
+    "observed_at": "2026-09-21T16:14:05+08:00",
+    "market_open": false,
+    "calendar_source": "扶摇交易日历",
+    "request_id": "7e11086706374a4dbf8d461d0c7cc5eb",
+    "heat": null,
+    "status": "ok",
+    "last": 1252.57,
+    "previous_close": 1257.12,
+    "change": -0.0036193839887997607,
+    "reported_change": -0.0036193799999999997,
+    "source_url": "https://fuyao.aicubes.cn/docs/api-reference/prices/"
+  }
+}

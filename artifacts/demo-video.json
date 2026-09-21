@@ -1,0 +1,88 @@
+{
+  "verified_at": "2026-09-21T08:40:04.116039+00:00",
+  "file": "demo.mp4",
+  "duration_seconds": 96.266667,
+  "width": 1440,
+  "height": 1000,
+  "codec": "h264",
+  "size_bytes": 3300905,
+  "sha256": "c3dc1e367ec56496edf44b6de0c5d4478696466781c954356305c050f1432bdc",
+  "source_duration_seconds": 96.28,
+  "playback_speed": 1,
+  "capture": "真实Chrome页面操作，添加章节字幕；演示行情明确标注为模拟数据。",
+  "audio": "无旁白，使用中文字幕说明操作与判断。",
+  "chapters": [
+    {
+      "at_seconds": 0.02,
+      "title": "01 / 照看：投资监控与风险雷达",
+      "caption": "把一句关注点变成持续检查的规则。提醒与未提醒，都能看到依据。",
+      "video_at_seconds": 0.02
+    },
+    {
+      "at_seconds": 7.2,
+      "title": "02 / 自然语言 → 可检查规则",
+      "caption": "未来两周：日内跌幅达到3%，或出现业绩预告。AI调用失败时会明确显示本地回退。",
+      "video_at_seconds": 7.2
+    },
+    {
+      "at_seconds": 16.62,
+      "title": "03 / 激活前确认，阈值可修改",
+      "caption": "核对公司、比较关系与公告类别。将跌幅改为3.5%，保留30分钟冷却。",
+      "video_at_seconds": 16.62
+    },
+    {
+      "at_seconds": 23.86,
+      "title": "04 / 为什么没有提醒",
+      "caption": "模拟跌幅为1.2%，没有新公告。两条条件均未满足，本轮不提醒。",
+      "video_at_seconds": 23.86
+    },
+    {
+      "at_seconds": 32.12,
+      "title": "05 / 为什么提醒",
+      "caption": "模拟跌幅达到3.8%，超过设定阈值。提醒已保存，同时进入冷却。",
+      "video_at_seconds": 32.12
+    },
+    {
+      "at_seconds": 41.26,
+      "title": "06 / 冷却与去重",
+      "caption": "跌幅继续扩大至4.5%，同一交易日的同一价格规则不会重复打扰。",
+      "video_at_seconds": 41.26
+    },
+    {
+      "at_seconds": 48.29,
+      "title": "07 / 冷却期间，公告仍被保留",
+      "caption": "冷却期间发现新业绩预告，先保留。推进演示时钟，冷却结束后再提醒。",
+      "video_at_seconds": 48.29
+    },
+    {
+      "at_seconds": 57.4,
+      "title": "08 / 来源异常，明确告诉用户",
+      "caption": "注入行情超时：价格条件显示“无法判断”，公告检查继续运行。",
+      "video_at_seconds": 57.4
+    },
+    {
+      "at_seconds": 66.12,
+      "title": "09 / 恢复与规则历史",
+      "caption": "来源恢复后继续监控。修改规则形成新版本，历史判断仍可追溯。",
+      "video_at_seconds": 66.12
+    },
+    {
+      "at_seconds": 75.04,
+      "title": "10 / 每次提醒都有记录",
+      "caption": "条件提醒、来源异常和恢复分开记录。通知与任务状态在同一事务内保存。",
+      "video_at_seconds": 75.04
+    },
+    {
+      "at_seconds": 82.09,
+      "title": "11 / 当前边界与验证证据",
+      "caption": "本视频使用模拟行情。已完成真实模型与数据接口探测、自动化测试及进程重启验证。",
+      "video_at_seconds": 82.09
+    },
+    {
+      "at_seconds": 89.1,
+      "title": "照看 · Qiyao Tan",
+      "caption": "规则由用户确认。仅提供事实监控与站内提醒，不构成投资建议。",
+      "video_at_seconds": 89.1
+    }
+  ]
+}

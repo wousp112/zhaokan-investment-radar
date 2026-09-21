@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-09-21T08:54:14.381790+00:00",
+  "automated_tests": 87,
+  "passed": 87,
+  "failed": 0,
+  "browser_checks": 11,
+  "process_recovery": true,
+  "live_model_successes": 15,
+  "live_model_attempts": 20,
+  "pipeline_semantic_matches": 20,
+  "latest_quote_status": "ok",
+  "latest_model_passed": 20,
+  "latest_model_total": 20,
+  "model_matches_current_compiler": true,
+  "public_browser_checks": 11,
+  "public_browser_checked_at": "2026-09-21T08:51:30.652549+00:00"
+}

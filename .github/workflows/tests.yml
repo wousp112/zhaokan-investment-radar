@@ -1,0 +1,36 @@
+name: Test investment radar
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  deterministic-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest -q --junitxml=artifacts/ci-tests.xml
+        env:
+          RADAR_AI_ENABLED: '0'
+          RADAR_ALLOW_LIVE: '0'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-evidence
+          path: artifacts/ci-tests.xml
+  container-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker build --tag zhaokan-radar:ci .
+      - run: docker run --detach --name zhaokan-radar-ci --publish 127.0.0.1:8000:8000 --env RADAR_AI_ENABLED=0 --env RADAR_ALLOW_LIVE=0 zhaokan-radar:ci
+      - run: python3 scripts/smoke_http.py --output artifacts/container-smoke.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: container-evidence
+          path: artifacts/container-smoke.json
+      - run: docker logs zhaokan-radar-ci
+        if: always()
