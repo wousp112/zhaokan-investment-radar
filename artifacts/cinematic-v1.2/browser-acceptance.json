@@ -1,0 +1,42 @@
+{
+  "saved_at": "2026-09-22T00:04:00.461636+00:00",
+  "public_player": "https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html",
+  "loaded_video": {
+    "duration": 146.233333,
+    "width": 1920,
+    "height": 1080,
+    "readyState": 4,
+    "error": null
+  },
+  "chapters": 16,
+  "chapter_jump": {
+    "seconds": 68.7,
+    "paused_after_jump": true,
+    "video_top": 22.9296875,
+    "video_bottom": 696.8046875,
+    "viewport_height": 720,
+    "focus": "movie"
+  },
+  "playback": {
+    "start": 68.721333,
+    "later": 82.192315,
+    "progressed": true,
+    "paused_after_check": true,
+    "error": null
+  },
+  "mobile": {
+    "viewport_width": 390,
+    "document_width": 390,
+    "video_width": 352,
+    "video_height": 198,
+    "horizontal_overflow": false
+  },
+  "navigation_isolated_instance": {
+    "previous_view_scroll_y": 940.5,
+    "dashboard_scroll_y": 0,
+    "focused_element": "page-title",
+    "scrollbar_gutter": "stable"
+  },
+  "console_errors_seen": [],
+  "scope": "Public video loading, playback, chapter seeking and mobile width; app navigation checked in isolated local instance. Not a subjective listening or new-user study."
+}

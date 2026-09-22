@@ -2,7 +2,7 @@
 
 面向有自选股和明确研究关注点、无法全天盯盘的 A 股个人投资者。把自然语言转成可检查、可修改的监控规则，持续说明任务是否正常，以及为什么提醒、为什么没有提醒。
 
-**体验方式：** [打开产品](https://exhibitions-vienna-extending-liberty.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [本轮约96秒视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
+**体验方式：** [打开产品](https://exhibitions-vienna-extending-liberty.trycloudflare.com) · [源码仓库](https://github.com/wousp112/zhaokan-investment-radar) · [带旁白的产品演示](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [验证说明](TESTING_AND_EVAL.md) · [AI 使用记录](AI_USAGE_AND_VERIFICATION.md)
 
 本轮增加直接选择条件、通知已读与反馈、生成时的证据快照，以及当前访客的运行统计。完整的36项检查、补齐结果和上线前仍需的条件见[专业交付差距清单](docs/PROFESSIONAL_GAP_REVIEW.md)。
 
@@ -18,7 +18,7 @@
 
 真实数据模式调用已配置的扶摇行情及 iFinD 公告服务。没有凭据、来源失败或数据不可用时，会显示相应状态，不切换为模拟行情。提醒保存在站内，当前没有邮件、短信或浏览器后台推送。
 
-使用步骤见[用户指南](docs/USER_GUIDE.md)。本轮视频以实际操作截图制作成带字幕的分镜演示，各环节取自不同验证步骤；视频时长不用于衡量系统延迟。文件时长、编码和来源截图摘要见[本轮视频记录](artifacts/professional-review/demo-video.json)。v1.0.0视频保留为历史版本。
+使用步骤见[用户指南](docs/USER_GUIDE.md)。v1.2视频长146.23秒，包含中文合成旁白、点击提示与重点放大，提供章节跳转。画面来自实际操作，等待过程经过剪辑；视频时长不用于衡量系统延迟。文件属性、音轨及来源摘要见[本轮视频验证](artifacts/cinematic-v1.2/verification.json)，构建与部署方式见[演示说明](DEMO_SCRIPT.md)。旧视频保留为历史版本。
 
 ## 已实现的闭环
 
@@ -117,7 +117,7 @@ AI 只参与关注点提取。行情计算、比较、状态流转和提醒发�
 
 最新可重放结果以 `artifacts/` 的原始记录为准。已建立自动化单元/API测试、真实 Chrome 页面操作验收、独立服务进程强制终止与恢复验证，以及外部模型和金融数据接口探测。
 
-本轮后端回归113项通过，前端逻辑测试16项通过。当前编译器的20条固定用例复测中，20次获得模型输出且字段匹配；公网单条输入另验证到DeepSeek实际整理耗时6001毫秒。受限网络中的20次连接失败及本地回退保留为单独批次。
+2026年9月22日回归为122项Python测试及16项前端逻辑测试通过，其中新增9项影音交付检查。原始输出见[本轮测试记录](artifacts/cinematic-v1.2/tests.xml)。当前编译器的20条固定用例复测中，20次获得模型输出且字段匹配；公网单条输入另验证到DeepSeek实际整理耗时6001毫秒。受限网络中的20次连接失败及本地回退保留为单独批次。
 
 隔离容量检查使用实际调度器和合成接口，120条任务全部完成首轮检查，并各保存一条通知；最高四路并发，首轮完成耗时1.446秒。该结果不代表真实金融接口吞吐或全天服务可用性。在线备份已在隔离目录恢复并核对完整性，原始证据位于[本轮检查目录](artifacts/professional-review/)。
 

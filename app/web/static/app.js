@@ -80,6 +80,7 @@ function replaceHtml(selector,html){
 }
 function setView(view){
  if(!['dashboard','inbox','demo','about'].includes(view))return;
+ const changed=state.view!==view;
  state.view=view;for(const v of ['dashboard','inbox','demo','about'])$('#'+v+'-view').hidden=v!==view;
  document.querySelectorAll('[data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===view);if(b.dataset.view===view)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
  const title={dashboard:'我的提醒',inbox:'提醒记录',demo:'演示体验',about:'使用帮助'}[view];$('#page-title').textContent=title;document.title=(state.alertUnread?'('+state.alertUnread+') ':'')+title+' · 照看';
@@ -88,6 +89,7 @@ function setView(view){
   state.walkthrough.step='done';welcomePreferences.remember('completed');
  }
  renderTutorial();
+ if(changed){window.scrollTo(0,0);$('#page-title').focus({preventScroll:true});}
 }
 function modeTag(mode){return `<span class="mode-tag ${mode==='live'?'live':'replay'}">${mode==='live'?'真实数据':'模拟数据'}</span>`;}
 function taskCard(task){

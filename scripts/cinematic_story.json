@@ -1,0 +1,23 @@
+{
+  "version": "1.2",
+  "voice": "Tingting (中文（中国大陆）)",
+  "voice_rate": 220,
+  "chapters": [
+    {"id":"intro","title":"把关注条件，变成持续检查","graphic":true,"sentences":["有自选股，却没时间一直盯盘。","照看把你的关注条件保存下来，持续检查，有变化时留下依据。"]},
+    {"id":"write","title":"先写清楚，关注什么","before":"initial-compose.png","after":"01-written.png","click":"下跌或发布业绩预告","focus_id":"prompt","sentences":["在新建提醒里，直接选用一个示例。","未来两周，贵州茅台下跌达到百分之三，或发布业绩预告，就提醒我。"]},
+    {"id":"ai","title":"AI 整理，用户核对","before":"02-ai-options-last.png","after":"03-enable-ai-last.png","focus_id":"use-ai","sentences":["需要帮助时，可以让AI整理这段文字。","系统会说明文字发给谁。AI生成草稿，核对后才能开启。"]},
+    {"id":"review","title":"每一项条件，都能检查","before":"03-enable-ai-last.png","after":"05-review.png","click_id":"parse-button","focus_id":"rule-dialog","sentences":["点击下一步，核对公司和比较方式。","这里的达到，包含正好百分之三。条件和结束时间都能修改。"]},
+    {"id":"activate","title":"确认之后，才开始检查","before":"05-review.png","after":"06-activate-last.png","click_id":"activate-button","sentences":["确认并开启提醒，任务才开始检查。","以后也能暂停、修改，或归档保留记录。"]},
+    {"id":"no-trigger","title":"没有提醒，也有明确原因","before":"06-activate-last.png","after":"07-no-trigger.png","click":"查看记录","focus_text":"尚未达到提醒条件","sentences":["打开检查记录。模拟跌幅只有百分之一点二，未达到设定条件。","也没有发现新公告。为什么没有提醒，每一项都有依据。"]},
+    {"id":"trigger","title":"条件满足，保存一条提醒","before":"08-demo.png","after":"09-trigger.png","click":"下跌至3.8%","focus_id":"scenario-result","sentences":["进入演示体验，点击下跌至百分之三点八。","条件满足，一条提醒已经保存。以下价格都是模拟数据。"]},
+    {"id":"dedup","title":"持续检查，减少重复打扰","before":"09-trigger.png","after":"10-deduplicated.png","click":"继续下跌","focus_id":"scenario-result","sentences":["继续下跌，提醒仍然只有一条。","同一条件已经提醒，本次就不再重复。"]},
+    {"id":"pending","title":"新公告先保留","before":"10-deduplicated.png","after":"11-pending.png","click":"新业绩预告","focus_id":"scenario-result","sentences":["提醒间隔内，出现新的业绩预告。","检查继续进行，公告先保留下来。"]},
+    {"id":"deliver","title":"间隔结束，补发公告","before":"11-pending.png","after":"12-delivered.png","click":"推进31分钟","focus_id":"scenario-result","sentences":["推进这条模拟任务的时钟，三十一分钟。","公告重新判断后补发，条件提醒变成两条。"]},
+    {"id":"failure","title":"数据异常，说明受影响的判断","before":"12-delivered.png","after":"13-timeout.png","click":"行情超时","focus_text":"数据待恢复","sentences":["模拟行情超时，界面显示数据待恢复。","数据不可用时，不拿旧价格下结论。"]},
+    {"id":"recovery","title":"恢复之后，继续监控","before":"13-timeout.png","after":"14-recovered.png","click":"恢复来源","focus_id":"scenario-result","sentences":["来源恢复以后，监控继续。","数据异常和恢复，也会分别保存在提醒记录里。"]},
+    {"id":"feedback","title":"打开提醒，核对当时的依据","before":"15-inbox.png","after":"16-feedback.png","click":"查看这条提醒","click_index":-1,"focus_id":"alert-detail-body","sentences":["打开一条提醒，查看当时的价格和判断。","还可以反馈有用、打扰太多，或者判断有误。"]},
+    {"id":"version","title":"修改条件，保留旧的判断","before":"17-edit.png","after":"19-frozen.png","focus_id":"alert-detail-body","sentences":["把当前阈值改为百分之四，保存为新版本。","旧通知仍保留原先百分之三的条件，历史判断不会被改写。"]},
+    {"id":"report","title":"演示与真实，分开统计","before":"20-report.png","after":"21-live-empty.png","click_id":"report-mode","focus_id":"report-body","sentences":["运行情况里，模拟和真实记录分开查看。","没有真实样本，就明确显示暂无记录。"]},
+    {"id":"outro","title":"从一条能解释的提醒开始","graphic":true,"sentences":["目前提供站内提醒，真实公告覆盖仍有限。","试用时，从示例开始，核对条件，再到提醒记录查看结果。"]}
+  ]
+}

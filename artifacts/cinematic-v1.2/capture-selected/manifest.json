@@ -1,0 +1,110 @@
+{
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "clips": [
+    {
+      "id": "03-enable-ai",
+      "frames": [
+        {
+          "file": "03-enable-ai/00000.jpg",
+          "at": 1790033087.353978
+        },
+        {
+          "file": "03-enable-ai/00001.jpg",
+          "at": 1790033087.751063
+        },
+        {
+          "file": "03-enable-ai/00002.jpg",
+          "at": 1790033087.768736
+        },
+        {
+          "file": "03-enable-ai/00003.jpg",
+          "at": 1790033087.817521
+        }
+      ],
+      "events": [
+        {
+          "kind": "click",
+          "label": "让AI帮我整理提醒条件",
+          "at": 1790033087.716,
+          "rect": {
+            "height": 13,
+            "width": 13,
+            "x": 375,
+            "y": 606.953125
+          }
+        }
+      ],
+      "focuses": [],
+      "started": 1790033087.22,
+      "ended": 1790033088.661
+    },
+    {
+      "id": "04-parse",
+      "frames": [],
+      "events": [
+        {
+          "kind": "click",
+          "label": "下一步：核对提醒",
+          "at": 1790033097.341,
+          "rect": {
+            "height": 34.796875,
+            "width": 132,
+            "x": 762,
+            "y": 659.546875
+          }
+        }
+      ],
+      "focuses": [],
+      "started": 1790033096.849,
+      "error": "Error: Error: Playwright selector deadline exceeded\nlocator.waitFor(visible) timed out for selector internal:role=dialog[name=\"核对提醒内容\"s]\nLocator diagnostics: {\"kind\":\"no_matches\",\"action\":\"waitFor\",\"locator\":\"internal:role=dialog[name=\\\"核对提醒内容\\\"s]\",\"matchCount\":0,\"matches\":[],\"visibleCount\":0,\"truncated\":false}",
+      "ended": 1790033100.789
+    },
+    {
+      "id": "06-activate",
+      "frames": [
+        {
+          "file": "06-activate/00000.jpg",
+          "at": 1790033143.154482
+        },
+        {
+          "file": "06-activate/00001.jpg",
+          "at": 1790033143.604235
+        },
+        {
+          "file": "06-activate/00002.jpg",
+          "at": 1790033143.682188
+        },
+        {
+          "file": "06-activate/00003.jpg",
+          "at": 1790033143.733498
+        },
+        {
+          "file": "06-activate/00004.jpg",
+          "at": 1790033143.791165
+        }
+      ],
+      "events": [
+        {
+          "kind": "click",
+          "label": "确认并开启提醒",
+          "at": 1790033143.556,
+          "rect": {
+            "height": 34.796875,
+            "width": 119,
+            "x": 776,
+            "y": 636.203125
+          }
+        }
+      ],
+      "focuses": [],
+      "started": 1790033143.051,
+      "ended": 1790033144.542
+    }
+  ],
+  "captured_ui_sha256": "923db0424607fa8bbc17bd0c1fe1b69c265321eef33b11f856cf3b9bced0322a",
+  "raw_manifest_sha256": "81d5eda8228fe82104a44167352a7cd1bb25f5172a9107bc051a1676f8db3ab4",
+  "scope": "Frames and click measurements used by the media renderer. Original capture logs remain local."
+}

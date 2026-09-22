@@ -10,12 +10,16 @@ import io
 import json
 from pathlib import Path
 import subprocess
+import sys
 from urllib.parse import urlparse
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 LIMIT_BYTES = 30_000_000
-VIDEO_PATH = 'artifacts/professional-review/demo-v1.1.mp4'
+VIDEO_PATH = 'artifacts/cinematic-v1.2/demo-v1.2.mp4'
+MEDIA_DIR = ROOT/'artifacts/cinematic-v1.2'
+sys.path.insert(0,str(ROOT))
+from scripts.verify_demo import validate_contract, parse_vtt
 
 
 def git(*args: str) -> bytes:
@@ -33,12 +37,18 @@ def main() -> None:
         if product_url not in (ROOT/name).read_text():
             raise ValueError(f'{name} does not contain the current product URL.')
     video = (ROOT/VIDEO_PATH).read_bytes()
-    video_info = json.loads((ROOT/'artifacts/professional-review/demo-video.json').read_text())
+    video_info = json.loads((MEDIA_DIR/'demo-video.json').read_text())
     video_sha = hashlib.sha256(video).hexdigest()
     if video_sha != video_info['sha256']:
         raise ValueError('Video differs from its verified metadata.')
     if not 60 <= float(video_info['duration_seconds']) <= 180:
         raise ValueError('Video must be 60–180 seconds.')
+    actual = json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format',
+        '-show_streams','-of','json',str(ROOT/VIDEO_PATH)]))
+    validate_contract(actual,json.loads((MEDIA_DIR/'chapters.json').read_text()),parse_vtt(MEDIA_DIR/'demo.vtt'))
+    verification = json.loads((MEDIA_DIR/'verification.json').read_text())
+    if verification.get('sha256') != video_sha or not verification.get('technical_checks_passed'):
+        raise ValueError('Run scripts/verify_demo.py against the final movie before packaging.')
     source = zipfile.ZipFile(io.BytesIO(git('archive', '--format=zip', 'HEAD')))
     contents: dict[str, bytes] = {}
     for item in source.infolist():
@@ -64,8 +74,9 @@ def main() -> None:
 <p>把关注条件写下来，核对后开启提醒；每次触发和未触发都有检查记录。</p>
 <p><a href="{escape(product_url, quote=True)}">打开交互产品</a><a href="https://github.com/wousp112/zhaokan-investment-radar">查看源码仓库</a><a href="SUBMISSION.md">完整提交说明</a></p>
 <h2>产品演示</h2>
-<p>约96秒，含简体中文字幕。画面取自实际操作截图分镜，行情使用模拟数据。下方视频随提交包提供，可离线播放。</p>
-<video controls preload="metadata" src="{VIDEO_PATH}"></video>
+<p>约146秒，1920×1080，含中文合成旁白、字幕和点击标注。画面来自实际操作，行情使用模拟数据。下方视频随提交包提供，可离线播放。</p>
+<video controls playsinline preload="metadata" poster="app/web/static/demo-poster.jpg" src="{VIDEO_PATH}"></video>
+<p><a href="artifacts/cinematic-v1.2/demo.srt">字幕文件</a><a href="DEMO_SCRIPT.md">章节与制作说明</a></p>
 <p>源码和README位于本目录。测试结果与AI使用记录见TESTING_AND_EVAL.md和AI_USAGE_AND_VERIFICATION.md。</p>
 <small>公开体验依赖本机及临时通道。当前仅提供站内通知，不发送短信或手机推送。具体数据范围和未完成事项见README。</small>
 <small>源代码版本：{revision}</small></html>'''

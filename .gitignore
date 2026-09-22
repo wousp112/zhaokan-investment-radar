@@ -33,3 +33,11 @@ artifacts/*-failed.png
 /artifacts/professional-review/video-capture/
 /artifacts/professional-review/walkthrough-build/
 /artifacts/professional-review/transfer-reference.png
+/artifacts/cinematic-v1.2/build/
+/artifacts/cinematic-v1.2/raw/
+/artifacts/cinematic-v1.2/capture/
+/artifacts/cinematic-v1.2/voice/
+/artifacts/cinematic-v1.2/voice-probe*
+/artifacts/cinematic-v1.2/capture-server.json
+/app/web/static/cinematic-qa/
+/app/web/static/demo-v1.2.mp4

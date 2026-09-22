@@ -1,0 +1,265 @@
+{
+  "provider": "macOS offline speech synthesis",
+  "voice": "Tingting (中文（中国大陆）)",
+  "synthetic_voice": true,
+  "text_sent_off_device": false,
+  "sentences": [
+    {
+      "chapter": "intro",
+      "index": 0,
+      "text": "有自选股，却没时间一直盯盘。",
+      "file": "artifacts/cinematic-v1.2/voice/intro-00.aiff",
+      "duration": 2.77093,
+      "sha256": "9dfa5171973d44af7fa4ae8be96e73c32f98306aa66e81b22ffb55c6eacc55f9"
+    },
+    {
+      "chapter": "intro",
+      "index": 1,
+      "text": "照看把你的关注条件保存下来，持续检查，有变化时留下依据。",
+      "file": "artifacts/cinematic-v1.2/voice/intro-01.aiff",
+      "duration": 5.308617,
+      "sha256": "ce255a9610211e9359d6b21c098f34050df7494159530bb50bff333844d977e3"
+    },
+    {
+      "chapter": "write",
+      "index": 0,
+      "text": "在新建提醒里，直接选用一个示例。",
+      "file": "artifacts/cinematic-v1.2/voice/write-00.aiff",
+      "duration": 2.847166,
+      "sha256": "58c3371d0ab647ca8ae82a3f8413bf9a0b4dc9203286205fe1cac10ac338f419"
+    },
+    {
+      "chapter": "write",
+      "index": 1,
+      "text": "未来两周，贵州茅台下跌达到百分之三，或发布业绩预告，就提醒我。",
+      "file": "artifacts/cinematic-v1.2/voice/write-01.aiff",
+      "duration": 5.90517,
+      "sha256": "231c990bcf89dc458af74b992a77e6cadcf627e5438f72434e064a0d35b154eb"
+    },
+    {
+      "chapter": "ai",
+      "index": 0,
+      "text": "需要帮助时，可以让AI整理这段文字。",
+      "file": "artifacts/cinematic-v1.2/voice/ai-00.aiff",
+      "duration": 3.132109,
+      "sha256": "a0da2e2083d5f2ee5b9b06cf78e760cb8aa215f5d8756f3632eb9d2c4be337a7"
+    },
+    {
+      "chapter": "ai",
+      "index": 1,
+      "text": "系统会说明文字发给谁。AI生成草稿，核对后才能开启。",
+      "file": "artifacts/cinematic-v1.2/voice/ai-01.aiff",
+      "duration": 4.976644,
+      "sha256": "bf4994e92f12ee98834819e61a88c8a9dcac028c352f6c8cc69cd551fafc7678"
+    },
+    {
+      "chapter": "review",
+      "index": 0,
+      "text": "点击下一步，核对公司和比较方式。",
+      "file": "artifacts/cinematic-v1.2/voice/review-00.aiff",
+      "duration": 2.983447,
+      "sha256": "c643b007d2117faaa0ab2a30d520da233869f8348476516a848c0f965392af69"
+    },
+    {
+      "chapter": "review",
+      "index": 1,
+      "text": "这里的达到，包含正好百分之三。条件和结束时间都能修改。",
+      "file": "artifacts/cinematic-v1.2/voice/review-01.aiff",
+      "duration": 4.960317,
+      "sha256": "5494c78c0d8e8b76e72100c413dfec40a175b2a4721b62385de23c307b71dc47"
+    },
+    {
+      "chapter": "activate",
+      "index": 0,
+      "text": "确认并开启提醒，任务才开始检查。",
+      "file": "artifacts/cinematic-v1.2/voice/activate-00.aiff",
+      "duration": 3.247166,
+      "sha256": "8f1f721de17fbbac5c2559d9cfb0677e8dc7785b381d41a588b0cdb07ec6449a"
+    },
+    {
+      "chapter": "activate",
+      "index": 1,
+      "text": "以后也能暂停、修改，或归档保留记录。",
+      "file": "artifacts/cinematic-v1.2/voice/activate-01.aiff",
+      "duration": 3.537052,
+      "sha256": "6833eafb5864009ace688d3558549eeeb709dd188a153cf8597f22416a6d63ba"
+    },
+    {
+      "chapter": "no-trigger",
+      "index": 0,
+      "text": "打开检查记录。模拟跌幅只有百分之一点二，未达到设定条件。",
+      "file": "artifacts/cinematic-v1.2/voice/no-trigger-00.aiff",
+      "duration": 5.003039,
+      "sha256": "bef7fbb4807c72f707832bdc3f17008290622ccb324a268758027e069fc7b389"
+    },
+    {
+      "chapter": "no-trigger",
+      "index": 1,
+      "text": "也没有发现新公告。为什么没有提醒，每一项都有依据。",
+      "file": "artifacts/cinematic-v1.2/voice/no-trigger-01.aiff",
+      "duration": 4.349751,
+      "sha256": "2faa34a8fdf22e6a22b656975dfd622e07d1f0a4e038f4c90c281cbd1d5be93c"
+    },
+    {
+      "chapter": "trigger",
+      "index": 0,
+      "text": "进入演示体验，点击下跌至百分之三点八。",
+      "file": "artifacts/cinematic-v1.2/voice/trigger-00.aiff",
+      "duration": 3.503583,
+      "sha256": "b65f6a5b146383cbb6f8f6b05cddcdeb93c617005015b709895bdd162d34b4d3"
+    },
+    {
+      "chapter": "trigger",
+      "index": 1,
+      "text": "条件满足，一条提醒已经保存。以下价格都是模拟数据。",
+      "file": "artifacts/cinematic-v1.2/voice/trigger-01.aiff",
+      "duration": 4.83737,
+      "sha256": "82e5e5f9a654aaf443fa049cede0c7983e72cddb65d52fd9f75ab0155726add4"
+    },
+    {
+      "chapter": "dedup",
+      "index": 0,
+      "text": "继续下跌，提醒仍然只有一条。",
+      "file": "artifacts/cinematic-v1.2/voice/dedup-00.aiff",
+      "duration": 2.644444,
+      "sha256": "94f03127eb99db66ce57910d460f776f5489b519a1cac720098138915ac30647"
+    },
+    {
+      "chapter": "dedup",
+      "index": 1,
+      "text": "同一条件已经提醒，本次就不再重复。",
+      "file": "artifacts/cinematic-v1.2/voice/dedup-01.aiff",
+      "duration": 3.281451,
+      "sha256": "2c0c51b060ad867278782da880b8e7c8e1e38f8186d0abedf859d26b2f3223ca"
+    },
+    {
+      "chapter": "pending",
+      "index": 0,
+      "text": "提醒间隔内，出现新的业绩预告。",
+      "file": "artifacts/cinematic-v1.2/voice/pending-00.aiff",
+      "duration": 2.805624,
+      "sha256": "3ffe58f9543508881d408cbeb5320240a76b45be1b6fc405b126846efd676019"
+    },
+    {
+      "chapter": "pending",
+      "index": 1,
+      "text": "检查继续进行，公告先保留下来。",
+      "file": "artifacts/cinematic-v1.2/voice/pending-01.aiff",
+      "duration": 3.015964,
+      "sha256": "f404d2b51afe8e263ef43b464726a606e2b52f72858b5c3eddf5e35f7e4e9c1a"
+    },
+    {
+      "chapter": "deliver",
+      "index": 0,
+      "text": "推进这条模拟任务的时钟，三十一分钟。",
+      "file": "artifacts/cinematic-v1.2/voice/deliver-00.aiff",
+      "duration": 3.281587,
+      "sha256": "7d60b5c7a678fbaca37754d3c6bb7fd0ee43eb0fa9c92350bc54413c14298c09"
+    },
+    {
+      "chapter": "deliver",
+      "index": 1,
+      "text": "公告重新判断后补发，条件提醒变成两条。",
+      "file": "artifacts/cinematic-v1.2/voice/deliver-01.aiff",
+      "duration": 3.939229,
+      "sha256": "5a17de976cece8537b3e7d3dcb1dd08da451d02d7f3ff4b88b0f87db1f0f4b6d"
+    },
+    {
+      "chapter": "failure",
+      "index": 0,
+      "text": "模拟行情超时，界面显示数据待恢复。",
+      "file": "artifacts/cinematic-v1.2/voice/failure-00.aiff",
+      "duration": 3.363084,
+      "sha256": "d88a2eddbd86a4de7460871ef5b7388c8d4e165830372f92adde0b1236dbe5c3"
+    },
+    {
+      "chapter": "failure",
+      "index": 1,
+      "text": "数据不可用时，不拿旧价格下结论。",
+      "file": "artifacts/cinematic-v1.2/voice/failure-01.aiff",
+      "duration": 3.151791,
+      "sha256": "dc00110a4788f359bc0efbf89129d2dba3e16a42d904dd110e8faa74e230ad75"
+    },
+    {
+      "chapter": "recovery",
+      "index": 0,
+      "text": "来源恢复以后，监控继续。",
+      "file": "artifacts/cinematic-v1.2/voice/recovery-00.aiff",
+      "duration": 2.318005,
+      "sha256": "4537919e15668be3afeaf5013c449f3ed8a05ce3a071e2883ef80ac464d72c37"
+    },
+    {
+      "chapter": "recovery",
+      "index": 1,
+      "text": "数据异常和恢复，也会分别保存在提醒记录里。",
+      "file": "artifacts/cinematic-v1.2/voice/recovery-01.aiff",
+      "duration": 4.01093,
+      "sha256": "22c7435661e6e35d7f118563a207c23e16d0eb52c2d4a8c614364539550a5b2c"
+    },
+    {
+      "chapter": "feedback",
+      "index": 0,
+      "text": "打开一条提醒，查看当时的价格和判断。",
+      "file": "artifacts/cinematic-v1.2/voice/feedback-00.aiff",
+      "duration": 3.470522,
+      "sha256": "3aa793621095c183f7e1650b53359d32490280c56b28792057c1a2a658abf134"
+    },
+    {
+      "chapter": "feedback",
+      "index": 1,
+      "text": "还可以反馈有用、打扰太多，或者判断有误。",
+      "file": "artifacts/cinematic-v1.2/voice/feedback-01.aiff",
+      "duration": 3.867528,
+      "sha256": "752a363b3e50bda351f2123f72ab51fab7bdebc23183a614e21dd6a26fa92ff6"
+    },
+    {
+      "chapter": "version",
+      "index": 0,
+      "text": "把当前阈值改为百分之四，保存为新版本。",
+      "file": "artifacts/cinematic-v1.2/voice/version-00.aiff",
+      "duration": 3.524943,
+      "sha256": "d1c1ce19c24b97c6ddf2029d4647ab1dc37e44b0473eceac4f525cae0c2471cd"
+    },
+    {
+      "chapter": "version",
+      "index": 1,
+      "text": "旧通知仍保留原先百分之三的条件，历史判断不会被改写。",
+      "file": "artifacts/cinematic-v1.2/voice/version-01.aiff",
+      "duration": 4.79229,
+      "sha256": "86a26b84cc32ffd13fb3511c8431df49c044f69ec93690335b612f650dc3c9d8"
+    },
+    {
+      "chapter": "report",
+      "index": 0,
+      "text": "运行情况里，模拟和真实记录分开查看。",
+      "file": "artifacts/cinematic-v1.2/voice/report-00.aiff",
+      "duration": 3.432109,
+      "sha256": "4456d8471c2e4ca772be8a4627f8f311c50bc45cceb49087222f624283254141"
+    },
+    {
+      "chapter": "report",
+      "index": 1,
+      "text": "没有真实样本，就明确显示暂无记录。",
+      "file": "artifacts/cinematic-v1.2/voice/report-01.aiff",
+      "duration": 3.142494,
+      "sha256": "ea3ca3803a4c5d7682a580f28e108e7914305b4ae0d4f9f4655c40fbad0383d5"
+    },
+    {
+      "chapter": "outro",
+      "index": 0,
+      "text": "目前提供站内提醒，真实公告覆盖仍有限。",
+      "file": "artifacts/cinematic-v1.2/voice/outro-00.aiff",
+      "duration": 3.572789,
+      "sha256": "a4b8e4e545b96914082613eba5a5e8eb5cb14cf90548c19903a87625491584c1"
+    },
+    {
+      "chapter": "outro",
+      "index": 1,
+      "text": "试用时，从示例开始，核对条件，再到提醒记录查看结果。",
+      "file": "artifacts/cinematic-v1.2/voice/outro-01.aiff",
+      "duration": 5.392834,
+      "sha256": "fcb0c56d28c50cc3418cbcb52476a51ffbb5fbfceb239ebf7b673d14c685b451"
+    }
+  ],
+  "speech_seconds": 120.36997899999997
+}

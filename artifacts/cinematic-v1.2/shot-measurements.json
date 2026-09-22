@@ -1,0 +1,234 @@
+[
+  {
+    "id": "write",
+    "before": "initial-compose.png",
+    "after": "01-written.png",
+    "click_target": null,
+    "focus_target": [
+      371,
+      131.59375,
+      523,
+      126.78125
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "ai",
+    "before": "02-ai-options-last.png",
+    "after": "03-enable-ai-last.png",
+    "click_target": [
+      375,
+      606.953125,
+      13,
+      13
+    ],
+    "focus_target": [
+      345,
+      440,
+      590,
+      230
+    ],
+    "has_real_transition_frames": true
+  },
+  {
+    "id": "review",
+    "before": "03-enable-ai-last.png",
+    "after": "05-review.png",
+    "click_target": [
+      762,
+      659.546875,
+      132,
+      34.796875
+    ],
+    "focus_target": [
+      360,
+      134,
+      548,
+      310
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "activate",
+    "before": "05-review.png",
+    "after": "06-activate-last.png",
+    "click_target": [
+      776,
+      636.203125,
+      119,
+      34.796875
+    ],
+    "focus_target": null,
+    "has_real_transition_frames": true
+  },
+  {
+    "id": "no-trigger",
+    "before": "06-activate-last.png",
+    "after": "07-no-trigger.png",
+    "click_target": null,
+    "focus_target": [
+      715,
+      164,
+      545,
+      396
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "trigger",
+    "before": "08-demo.png",
+    "after": "09-trigger.png",
+    "click_target": [
+      349,
+      389.0859375,
+      87.0390625,
+      33.1953125
+    ],
+    "focus_target": [
+      271,
+      421.9765625,
+      620,
+      170
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "dedup",
+    "before": "09-trigger.png",
+    "after": "10-deduplicated.png",
+    "click_target": [
+      444.0390625,
+      371.5859375,
+      70,
+      33.1953125
+    ],
+    "focus_target": [
+      271,
+      420.9765625,
+      620,
+      170
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "pending",
+    "before": "10-deduplicated.png",
+    "after": "11-pending.png",
+    "click_target": [
+      522.0390625,
+      370.5859375,
+      82,
+      33.1953125
+    ],
+    "focus_target": [
+      271,
+      420.9765625,
+      620,
+      170
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "deliver",
+    "before": "11-pending.png",
+    "after": "12-delivered.png",
+    "click_target": [
+      612.0390625,
+      370.5859375,
+      83.09375,
+      33.1953125
+    ],
+    "focus_target": [
+      271,
+      420.9765625,
+      620,
+      170
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "failure",
+    "before": "12-delivered.png",
+    "after": "13-timeout.png",
+    "click_target": [
+      703.1328125,
+      370.5859375,
+      70,
+      33.1953125
+    ],
+    "focus_target": [
+      248,
+      520.7734375,
+      989,
+      131.5859375
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "recovery",
+    "before": "13-timeout.png",
+    "after": "14-recovered.png",
+    "click_target": [
+      781.1328125,
+      370.5859375,
+      70,
+      33.1953125
+    ],
+    "focus_target": [
+      271,
+      420.9765625,
+      620,
+      170
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "feedback",
+    "before": "15-inbox.png",
+    "after": "16-feedback.png",
+    "click_target": [
+      1155,
+      584.671875,
+      82,
+      31.1953125
+    ],
+    "focus_target": [
+      337.5,
+      32,
+      590,
+      656
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "version",
+    "before": "17-edit.png",
+    "after": "19-frozen.png",
+    "click_target": null,
+    "focus_target": [
+      337.5,
+      32,
+      590,
+      656
+    ],
+    "has_real_transition_frames": false
+  },
+  {
+    "id": "report",
+    "before": "20-report.png",
+    "after": "21-live-empty.png",
+    "click_target": [
+      492.5,
+      142,
+      394,
+      34
+    ],
+    "focus_target": [
+      363.5,
+      192,
+      523,
+      522.546875
+    ],
+    "has_real_transition_frames": false
+  }
+]

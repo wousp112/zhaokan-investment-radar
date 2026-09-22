@@ -1,0 +1,21 @@
+{
+  "duration_seconds": 146.233333,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "caption_count": 32,
+  "chapter_count": 16,
+  "verified_at": "2026-09-21T23:54:15.613312+00:00",
+  "sha256": "0bc8270942a26c3b804bd1f2273ffdcc17fd5829e73cff38466ced0b87082d8c",
+  "size_bytes": 7563028,
+  "decode_verified": true,
+  "source_hashes_verified": true,
+  "narration_lufs": -16.12,
+  "true_peak_dbtp": -1.43,
+  "script_caption_match": true,
+  "measured_click_count": 11,
+  "technical_checks_passed": true,
+  "scope": "Encoded media, captions, source hashes and audio levels. Subjective voice quality requires listening."
+}

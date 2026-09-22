@@ -1,0 +1,385 @@
+{
+  "created_at": "2026-09-21T23:53:15.899904+00:00",
+  "file": "artifacts/cinematic-v1.2/demo-v1.2.mp4",
+  "duration_seconds": 146.233333,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "audio_sample_rate": 48000,
+  "size_bytes": 7563028,
+  "sha256": "0bc8270942a26c3b804bd1f2273ffdcc17fd5829e73cff38466ced0b87082d8c",
+  "decode_verified": true,
+  "audio_source": {
+    "engine": "macOS offline speech synthesis",
+    "voice": "Tingting (中文（中国大陆）)",
+    "synthetic": true,
+    "offline": true,
+    "input_sample_peak": 0.6153444051742554
+  },
+  "capture": "Sequential verified UI captures and short captured UI transitions; postproduction cursor, click rings and camera motion. Not an uninterrupted screen recording.",
+  "source_viewport": [
+    1280,
+    720
+  ],
+  "source_mode": "isolated simulated data",
+  "captured_ui_sha256": "923db0424607fa8bbc17bd0c1fe1b69c265321eef33b11f856cf3b9bced0322a",
+  "caption_count": 32,
+  "chapter_count": 16,
+  "measured_click_count": 11,
+  "click_times": [
+    22.091826616666665,
+    31.74339585,
+    41.45510796666666,
+    60.96280398333333,
+    70.4569442,
+    78.07892653333332,
+    85.77403951666666,
+    94.65219619999999,
+    102.21073608333333,
+    110.77795376666666,
+    131.29877566666667
+  ],
+  "chapters": [
+    {
+      "id": "intro",
+      "title": "把关注条件，变成持续检查",
+      "start": 0.0,
+      "end": 9.7,
+      "sentences": [
+        "有自选股，却没时间一直盯盘。",
+        "照看把你的关注条件保存下来，持续检查，有变化时留下依据。"
+      ]
+    },
+    {
+      "id": "write",
+      "title": "先写清楚，关注什么",
+      "start": 9.7,
+      "end": 20.067,
+      "sentences": [
+        "在新建提醒里，直接选用一个示例。",
+        "未来两周，贵州茅台下跌达到百分之三，或发布业绩预告，就提醒我。"
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI 整理，用户核对",
+      "start": 20.067,
+      "end": 29.8,
+      "sentences": [
+        "需要帮助时，可以让AI整理这段文字。",
+        "系统会说明文字发给谁。AI生成草稿，核对后才能开启。"
+      ]
+    },
+    {
+      "id": "review",
+      "title": "每一项条件，都能检查",
+      "start": 29.8,
+      "end": 39.367,
+      "sentences": [
+        "点击下一步，核对公司和比较方式。",
+        "这里的达到，包含正好百分之三。条件和结束时间都能修改。"
+      ]
+    },
+    {
+      "id": "activate",
+      "title": "确认之后，才开始检查",
+      "start": 39.367,
+      "end": 47.767,
+      "sentences": [
+        "确认并开启提醒，任务才开始检查。",
+        "以后也能暂停、修改，或归档保留记录。"
+      ]
+    },
+    {
+      "id": "no-trigger",
+      "title": "没有提醒，也有明确原因",
+      "start": 47.767,
+      "end": 58.733,
+      "sentences": [
+        "打开检查记录。模拟跌幅只有百分之一点二，未达到设定条件。",
+        "也没有发现新公告。为什么没有提醒，每一项都有依据。"
+      ]
+    },
+    {
+      "id": "trigger",
+      "title": "条件满足，保存一条提醒",
+      "start": 58.733,
+      "end": 68.7,
+      "sentences": [
+        "进入演示体验，点击下跌至百分之三点八。",
+        "条件满足，一条提醒已经保存。以下价格都是模拟数据。"
+      ]
+    },
+    {
+      "id": "dedup",
+      "title": "持续检查，减少重复打扰",
+      "start": 68.7,
+      "end": 76.233,
+      "sentences": [
+        "继续下跌，提醒仍然只有一条。",
+        "同一条件已经提醒，本次就不再重复。"
+      ]
+    },
+    {
+      "id": "pending",
+      "title": "新公告先保留",
+      "start": 76.233,
+      "end": 83.667,
+      "sentences": [
+        "提醒间隔内，出现新的业绩预告。",
+        "检查继续进行，公告先保留下来。"
+      ]
+    },
+    {
+      "id": "deliver",
+      "title": "间隔结束，补发公告",
+      "start": 83.667,
+      "end": 92.5,
+      "sentences": [
+        "推进这条模拟任务的时钟，三十一分钟。",
+        "公告重新判断后补发，条件提醒变成两条。"
+      ]
+    },
+    {
+      "id": "failure",
+      "title": "数据异常，说明受影响的判断",
+      "start": 92.5,
+      "end": 100.633,
+      "sentences": [
+        "模拟行情超时，界面显示数据待恢复。",
+        "数据不可用时，不拿旧价格下结论。"
+      ]
+    },
+    {
+      "id": "recovery",
+      "title": "恢复之后，继续监控",
+      "start": 100.633,
+      "end": 108.567,
+      "sentences": [
+        "来源恢复以后，监控继续。",
+        "数据异常和恢复，也会分别保存在提醒记录里。"
+      ]
+    },
+    {
+      "id": "feedback",
+      "title": "打开提醒，核对当时的依据",
+      "start": 108.567,
+      "end": 117.533,
+      "sentences": [
+        "打开一条提醒，查看当时的价格和判断。",
+        "还可以反馈有用、打扰太多，或者判断有误。"
+      ]
+    },
+    {
+      "id": "version",
+      "title": "修改条件，保留旧的判断",
+      "start": 117.533,
+      "end": 127.467,
+      "sentences": [
+        "把当前阈值改为百分之四，保存为新版本。",
+        "旧通知仍保留原先百分之三的条件，历史判断不会被改写。"
+      ]
+    },
+    {
+      "id": "report",
+      "title": "演示与真实，分开统计",
+      "start": 127.467,
+      "end": 135.667,
+      "sentences": [
+        "运行情况里，模拟和真实记录分开查看。",
+        "没有真实样本，就明确显示暂无记录。"
+      ]
+    },
+    {
+      "id": "outro",
+      "title": "从一条能解释的提醒开始",
+      "start": 135.667,
+      "end": 146.233,
+      "sentences": [
+        "目前提供站内提醒，真实公告覆盖仍有限。",
+        "试用时，从示例开始，核对条件，再到提醒记录查看结果。"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "file": "01-written.png",
+      "sha256": "6fc3754f57a345509c880a42107f489cdea33c18b51f2bf5fb6537f1d38f6692",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "02-ai-options-last.png",
+      "sha256": "52104c5fcf7d8bee5238e3ac5449328d771d2bea81c92329770c9b5ff32cf4ac",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "03-enable-ai-last.png",
+      "sha256": "e38f096c9b4da7218cb4b6eb40ae17b77357e72b29dacf9bdddaa58dce36f22c",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "05-review.png",
+      "sha256": "6afcb1595b611b49698210375f4442a9253546488e5b1279b2a1171521a7c710",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "06-activate-last.png",
+      "sha256": "e9958cd62a75b407a532f10fd133eff29c8c1d91e7b4ed8b6883a3a6296b8fee",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "07-no-trigger.png",
+      "sha256": "8e4ac0d7ec3042495d361d900680fa8ddd2fe00897f8c852de5f2933ae0dbc7a",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "08-demo.png",
+      "sha256": "692b1651a7c40731c6431cc523c0c4e6a6b4147e1f734bae567717cbf5ebf63c",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "09-trigger.png",
+      "sha256": "ced79402e0779d605c6d525962a70e84e0c7b9464f7d89e9409b04f4a2383488",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "10-deduplicated.png",
+      "sha256": "7dabb51efe62ed82b85c64e4e54f90a48273c612762c53eea63c5e2196ba4d43",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "11-pending.png",
+      "sha256": "7cfd383f587cb7bf150e084eda1791773f79b386a1d7d2edb1a5b2c9afbc3cec",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "12-delivered.png",
+      "sha256": "3c9fa044ad1dd4fdfab4474492c09dd489db87fd677fc847cfe1a798143e8c73",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "13-timeout.png",
+      "sha256": "4098b913d4535554256c6807af1f2a668ddea61e259399de0b77819bab444f50",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "14-recovered.png",
+      "sha256": "edd7e9c24df2483e7a7ec5c0a3b80cce3f968ffc68fa196d9b72b2fba7b25270",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "15-inbox.png",
+      "sha256": "5f164abd5b3cb4f78c91118a46dd1db4eb704570187f85ab978e9ff005ef15f2",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "16-feedback.png",
+      "sha256": "8c97d461d72b3634b43b14263afcbe18fa1e70a37a5884e43b5e2a26f0fbce55",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "16-open.png",
+      "sha256": "e1e4c389c1b6753f6fc4825231f31d42ac3299b896cf5123cabf8d8e33763e49",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "17-edit.png",
+      "sha256": "a083f94c388f6ebb1b58ea6c423ebcdc96c5806c76c395476528c8a457bff749",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "18-edited.png",
+      "sha256": "b2d2a3569f0ba22f539687c13b25eb378094da7ddea2e292621c492ca86e8aba",
+      "original_size": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "19-frozen.png",
+      "sha256": "a0d6fdcd9125f790355ec8a5a80ad9c8df665c0c30c3490dbc777530e3861d90",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "20-report.png",
+      "sha256": "89e645e6f7f8c32a0d1d064797df964669564685e483589c1af05c8b0e834f7c",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "21-live-empty.png",
+      "sha256": "779e229ee769622bec4b02adc1a39ee8d25cb7543e9f2c9c59635b3b955901f9",
+      "original_size": [
+        1265,
+        712
+      ]
+    },
+    {
+      "file": "initial-compose.png",
+      "sha256": "b846adbdfa3ddf28a15772d08533ea44cd4059f836e346150de7efd43227ed5a",
+      "original_size": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "subjective_voice_review": "Human listening review not performed by the build script."
+}

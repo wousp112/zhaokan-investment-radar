@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="设置股价与公告提醒，随时查看监控状态和检查记录。">
 <title>我的提醒 · 照看</title>
-<link rel="stylesheet" href="/static/style.css?v=20260921-4"><script defer src="/static/presentation.js?v=20260921-4"></script><script defer src="/static/onboarding.js?v=20260921-4"></script><script defer src="/static/app.js?v=20260921-4"></script>
+<link rel="stylesheet" href="/static/style.css?v=20260922-1"><script defer src="/static/presentation.js?v=20260922-1"></script><script defer src="/static/onboarding.js?v=20260922-1"></script><script defer src="/static/app.js?v=20260922-1"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到内容</a>
@@ -23,7 +23,7 @@
 <div class="sidebar-bottom"><span class="service-dot" id="service-dot"></span><span id="service-state">正在连接</span><button class="guest-link" data-view="about">访客使用说明</button></div>
 </aside>
 <main id="main" tabindex="-1">
-<header class="topbar"><button id="mobile-menu" class="icon-button mobile-only" aria-label="打开导航" aria-controls="sidebar" aria-expanded="false"><img src="/static/icons/menu-2.svg" alt=""></button><span class="breadcrumb">照看</span><img class="breadcrumb-chevron" src="/static/icons/chevron-right.svg" alt=""><h1 id="page-title">我的提醒</h1><button class="text-button tutorial-entry" data-action="welcome">使用教程</button><button class="primary" id="new-alert" data-action="new" disabled><img src="/static/icons/plus.svg" alt="">新建提醒</button></header>
+<header class="topbar"><button id="mobile-menu" class="icon-button mobile-only" aria-label="打开导航" aria-controls="sidebar" aria-expanded="false"><img src="/static/icons/menu-2.svg" alt=""></button><span class="breadcrumb">照看</span><img class="breadcrumb-chevron" src="/static/icons/chevron-right.svg" alt=""><h1 id="page-title" tabindex="-1">我的提醒</h1><button class="text-button tutorial-entry" data-action="welcome">使用教程</button><button class="primary" id="new-alert" data-action="new" disabled><img src="/static/icons/plus.svg" alt="">新建提醒</button></header>
 <div id="connection-error" class="inline-error page-message" role="alert" hidden></div>
 <div id="page-error" class="inline-error page-message" role="alert" hidden></div>
 <div id="operating-warning" class="inline-error page-message" role="status" hidden></div>
@@ -35,7 +35,7 @@
 <section id="inbox-view" class="view" hidden><div class="section-intro"><h2>提醒记录</h2><p>通知保存在这里。打开一条提醒，可核对当时的判断并留下反馈。</p><div class="inbox-toolbar"><label class="checkbox-label"><input id="unread-filter" type="checkbox">只看未读</label><span id="inbox-summary" class="muted"></span></div></div><div id="alert-list"></div><div class="inbox-more"><button class="secondary" id="older-alerts" data-action="older-alerts" hidden>加载更早的提醒</button></div></section>
 <section id="demo-view" class="view" hidden><div class="section-intro"><span class="mode-tag replay">模拟数据</span><h2>试一次完整的提醒</h2><p>创建示例，再依次查看价格触发、公告保留和数据异常。这里的操作只影响你选中的演示任务。</p><button class="primary" data-action="demo-new">创建演示提醒</button></div><div class="demo-controls"><label for="demo-target">选择演示任务</label><select id="demo-target"></select><p id="demo-state" class="muted"></p><div id="scenario-buttons"></div><p id="scenario-result" role="status"></p></div><div id="demo-task"></div></section>
 <section id="about-view" class="view help-view" hidden>
-<div class="section-intro"><h2>使用帮助</h2><p>写下关注条件，核对后开启。条件满足时，到“提醒记录”查看。</p><button class="primary" data-action="tutorial-start">跟着示例做一遍</button></div>
+<div class="section-intro"><h2>使用帮助</h2><p>写下关注条件，核对后开启。条件满足时，到“提醒记录”查看。</p><button class="primary" data-action="tutorial-start">跟着示例做一遍</button><p><a href="/static/demo.html" target="_blank" rel="noopener">观看2分26秒产品演示</a></p></div>
 <article><h3>创建提醒</h3><p>点击“新建提醒”，输入公司和关注条件。例如“未来两周，贵州茅台下跌达到3%，或发布新的业绩预告就提醒我”。选择“用模拟数据试用”或“监控真实行情”，点击“下一步：核对提醒”。核对公司、条件和结束时间后，点击“确认并开启提醒”。</p><p>“达到3%”包含正好3%；“超过3%”不包含正好3%。多条条件可以选择满足任意一条，或要求全部满足。</p></article>
 <article><h3>需要注册或设置 AI 吗？</h3><p>创建提醒不需要注册或设置 AI。按输入框的示例写明公司和数字，就可以继续。AI 是可选功能，默认关闭；开启后，上方输入的文字会发送给 DeepSeek AI，帮助整理提醒条件。无论是否使用 AI，都要由你核对后开启。</p></article>
 <article><h3>修改、暂停或结束</h3><p>在提醒列表点击“修改”，调整条件后保存。每次修改保留历史，已有提醒间隔仍然生效。“暂停”停止检查，“恢复”重新开始。到期会自动结束；归档会停止任务并保留记录。结束的提醒可以点击“复制为新提醒”，核对新的日期后开启。</p></article>
@@ -45,7 +45,7 @@
 <article><h3>先试一次演示</h3><p>打开“演示体验”，创建一条演示提醒。点击“下跌至3.8%”，再点击“继续下跌”验证不重复提醒。点击“新业绩预告”，再推进31分钟，验证公告补发。“行情超时”和“恢复来源”用于检查异常反馈。</p><p>演示行情的昨收为模拟100元。推进的时间只作用于所选演示任务。真实数据任务不能接受这些操作。</p></article>
 <article><h3>页面关闭后会怎样</h3><p>服务器运行期间，已激活且未暂停的任务仍会检查，提醒保存在站内。目前没有邮件、短信或浏览器后台推送，重新打开页面才能查看。</p><p>任务保存在服务器，当前浏览器凭访问标识读取。清除Cookie或更换设备后无法自动找回。可在“查看记录”中导出资料，当前不支持导入恢复或跨设备登录。</p></article>
 <article><h3>数据与运行范围</h3><p>目前支持选择列表中的12只A股。真实公告检索覆盖有限，可能漏检，部分公告只提供发布日期。量比仅在演示中可用。真实数据失败会显示异常，不会用模拟行情替代。</p><p>公开实例仍依赖本机与临时网络通道。电脑、网络或通道停止会影响访问和检查；停机期间的历史价格变化无法补造。</p></article>
-<details class="technical"><summary>技术与验证资料</summary><p>AI只提取规则，比较和提醒由程序执行。规则在激活前由用户确认。每轮判断保留来源、时间与规则版本，原始记录可导出。</p><p id="health-detail"></p><p><a href="https://github.com/wousp112/zhaokan-investment-radar" target="_blank" rel="noopener">源码与测试说明</a> · <a href="https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4" target="_blank" rel="noopener">约96秒产品演示</a></p><p>本轮实际操作截图分镜，含中文字幕，使用模拟数据。</p></details>
+<details class="technical"><summary>技术与验证资料</summary><p>AI只提取规则，比较和提醒由程序执行。规则在激活前由用户确认。每轮判断保留来源、时间与规则版本，原始记录可导出。</p><p id="health-detail"></p><p><a href="https://github.com/wousp112/zhaokan-investment-radar" target="_blank" rel="noopener">源码与测试说明</a> · <a href="/static/demo.html" target="_blank" rel="noopener">带旁白的产品演示</a></p><p>含中文旁白、字幕和重点放大。画面来自实际操作，行情使用模拟数据。</p></details>
 </section>
 <footer>仅监控客观事实，不构成投资建议。</footer>
 </main>

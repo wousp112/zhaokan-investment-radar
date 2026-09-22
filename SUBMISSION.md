@@ -6,7 +6,7 @@
 | --- | --- |
 | 可交互Web产品 | [打开照看](https://exhibitions-vienna-extending-liberty.trycloudflare.com) |
 | 完整源代码与README | [GitHub仓库](https://github.com/wousp112/zhaokan-investment-radar) |
-| 本轮约96秒演示视频 | [下载本轮视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.1.0/demo.mp4) · [实例内播放](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.mp4)；本地文件为 `artifacts/professional-review/demo-v1.1.mp4` |
+| 本轮约146秒演示视频 | [带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.0/demo.mp4)；本地文件为 `artifacts/cinematic-v1.2/demo-v1.2.mp4` |
 | AI使用与验证记录 | [AI_USAGE_AND_VERIFICATION.md](AI_USAGE_AND_VERIFICATION.md) |
 | 测试说明与原始证据 | [TESTING_AND_EVAL.md](TESTING_AND_EVAL.md)、[本轮原始结果](artifacts/professional-review/) |
 | 产品取舍及36项补齐清单 | [专业交付检查](docs/PROFESSIONAL_GAP_REVIEW.md) |
@@ -21,11 +21,11 @@
 
 ## 本轮交付状态
 
-v1.1.0已发布到GitHub，视频附件的SHA256与本地验证文件一致。应用源码提交`8ea0820`已通过[云端自动化与容器检查](https://github.com/wousp112/zhaokan-investment-radar/actions/runs/35613941075)。本页网址于2026年9月21日23时通道恢复后更新，最新入口另存于`CURRENT_PRODUCT_URL.txt`。
+当前交付为v1.2讲解版。最新产品入口另存于`CURRENT_PRODUCT_URL.txt`，视频元数据及验证结果见`artifacts/cinematic-v1.2/`。旧v1.1发布与历史测试保留；当前源码的云端检查以本次提交对应的GitHub Actions结果为准。
 
-后端113项回归与前端16项逻辑测试通过。当前编译器的20条固定模型用例全部取得模型输出且字段匹配，失败网络批次独立保留。隔离环境中120条模拟任务通过真实调度器的首轮检查；在线备份在隔离位置完成恢复核验。
+本轮122项Python回归与16项前端逻辑测试通过。当前编译器的20条固定模型用例全部取得模型输出且字段匹配，失败网络批次独立保留。隔离环境中120条模拟任务通过真实调度器的首轮检查；在线备份在隔离位置完成恢复核验。
 
-视频长95.97秒，1440×1160，H.264，带简体中文字幕。画面来自本轮实际操作截图，按环节剪辑，覆盖文字整理、核对、触发、去重、公告保留、异常、通知反馈和运行统计。它是分镜演示，各画面取自不同验证步骤。视频已完整解码检查，原生桥接未能返回可见图像，人工视觉播放检查仍待完成。
+视频长146.23秒，1920×1080，30帧，含中文合成旁白、字幕、点击标注和局部放大。画面来自隔离模拟环境的实际操作，部分等待经过剪辑。完整解码、音轨、响度、字幕及章节时序均有独立检查记录。播放页可按16个章节跳转。合成声音的自然程度仍由观看者判断。
 
 ## 评审时需要知道的边界
 

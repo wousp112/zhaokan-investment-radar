@@ -1,2 +1,3 @@
-# Optional: build the captioned walkthrough from captured product screenshots.
+# Optional: build narrated walkthroughs from captured product screenshots.
 Pillow==12.3.0
+numpy==2.4.6
