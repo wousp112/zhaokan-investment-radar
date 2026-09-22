@@ -1,0 +1,46 @@
+{
+  "recorded_at": "2026-09-22T00:37:12.395Z",
+  "computed_styles": {
+    "product": {
+      "accent": "#5b5bd6",
+      "background": "rgb(255, 255, 255)",
+      "buttonFont": "13px",
+      "buttonRadius": "6px",
+      "font": "-apple-system, \"system-ui\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "fontSize": "13px",
+      "line": "#e8e8ec",
+      "mainLeft": 0,
+      "muted": "#686a73",
+      "primary": "rgb(91, 91, 214)",
+      "scheme": "light",
+      "scrollWidth": 659,
+      "text": "#25262b",
+      "width": 659
+    },
+    "player": {
+      "accent": "#5b5bd6",
+      "background": "rgb(255, 255, 255)",
+      "buttonFont": "13px",
+      "buttonRadius": "6px",
+      "font": "-apple-system, \"system-ui\", \"Segoe UI\", \"PingFang SC\", \"Microsoft YaHei\", sans-serif",
+      "fontSize": "13px",
+      "line": "#e8e8ec",
+      "mainLeft": 220,
+      "muted": "#686a73",
+      "primary": "rgb(91, 91, 214)",
+      "scheme": "light",
+      "scrollWidth": 1265,
+      "text": "#25262b",
+      "width": 1280
+    }
+  },
+  "mobile": {
+    "columns": "167.5px 167.5px",
+    "mainLeft": 0,
+    "scrollWidth": 375,
+    "sidebarDisplay": "none",
+    "videoWidth": 341,
+    "width": 390
+  },
+  "image_review": "Image pixels were not returned by the native bridge; no frame-by-frame visual sign-off claimed."
+}

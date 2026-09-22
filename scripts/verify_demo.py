@@ -72,6 +72,11 @@ def main():
     actual_sha=hashlib.sha256(video.read_bytes()).hexdigest()
     if actual_sha != metadata['sha256']:
         raise ValueError('Movie differs from its build record.')
+    theme = metadata.get('presentation_theme')
+    if not theme or theme.get('source') != 'app/web/static/style.css':
+        raise ValueError('Movie must identify the shared product stylesheet.')
+    if hashlib.sha256((ROOT/theme['source']).read_bytes()).hexdigest() != theme['source_sha256']:
+        raise ValueError('Product stylesheet changed after the movie was built.')
     actual=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(video)]))
     chapters=json.loads((ART/'chapters.json').read_text())
     captions=parse_vtt(ART/'demo.vtt')
@@ -101,6 +106,7 @@ def main():
                    'narration_lufs':integrated,'true_peak_dbtp':peak,
                    'script_caption_match':True,'measured_click_count':metadata['measured_click_count'],
                    'technical_checks_passed':True,
+                   'product_stylesheet_matches':True,
                    'scope':'Encoded media, captions, source hashes and audio levels. Subjective voice quality requires listening.'})
     (ART/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps(report,ensure_ascii=False,indent=2))

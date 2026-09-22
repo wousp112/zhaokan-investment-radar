@@ -1,6 +1,6 @@
-# 产品演示视频 v1.2
+# 产品演示视频 v1.2.1
 
-[带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.0/demo.mp4) · [本地视频](artifacts/cinematic-v1.2/demo-v1.2.mp4) · [验证记录](artifacts/cinematic-v1.2/verification.json)
+[带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载MP4](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.1/demo.mp4) · [本地视频](artifacts/cinematic-v1.2/demo-v1.2.mp4) · [验证记录](artifacts/cinematic-v1.2/verification.json)
 
 时长146.23秒，1920×1080，30帧，H.264视频与AAC声音。包含中文合成旁白、32段同步字幕和重点放大。11组主操作带有按实际控件位置绘制的点击提示，反馈选项也保留点击标注。独立播放页提供16个章节、讲解全文和下载入口。
 

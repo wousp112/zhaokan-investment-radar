@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-09-21T23:53:15.899904+00:00",
+  "created_at": "2026-09-22T00:35:21.409652+00:00",
   "file": "artifacts/cinematic-v1.2/demo-v1.2.mp4",
   "duration_seconds": 146.233333,
   "width": 1920,
@@ -8,8 +8,8 @@
   "video_codec": "h264",
   "audio_codec": "aac",
   "audio_sample_rate": 48000,
-  "size_bytes": 7563028,
-  "sha256": "0bc8270942a26c3b804bd1f2273ffdcc17fd5829e73cff38466ced0b87082d8c",
+  "size_bytes": 7400027,
+  "sha256": "1366412b777359e8930db8e02b52274ee4b1a4038b1a9735093892e97c82e547",
   "decode_verified": true,
   "audio_source": {
     "engine": "macOS offline speech synthesis",
@@ -25,6 +25,21 @@
   ],
   "source_mode": "isolated simulated data",
   "captured_ui_sha256": "923db0424607fa8bbc17bd0c1fe1b69c265321eef33b11f856cf3b9bced0322a",
+  "presentation_theme": {
+    "source": "app/web/static/style.css",
+    "source_sha256": "eb1ae1e306ddeb8640f7d0c7120b10d27624a1ddfa521226bf842b29f0daa6fb",
+    "colors": {
+      "accent": "#5b5bd6",
+      "accent-soft": "#eeeeff",
+      "bg": "#fff",
+      "line": "#e8e8ec",
+      "muted": "#686a73",
+      "sidebar": "#f7f7f8",
+      "surface": "#fafafa",
+      "text": "#25262b"
+    },
+    "color_scheme": "light"
+  },
   "caption_count": 32,
   "chapter_count": 16,
   "measured_click_count": 11,

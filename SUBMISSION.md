@@ -6,7 +6,7 @@
 | --- | --- |
 | 可交互Web产品 | [打开照看](https://exhibitions-vienna-extending-liberty.trycloudflare.com) |
 | 完整源代码与README | [GitHub仓库](https://github.com/wousp112/zhaokan-investment-radar) |
-| 本轮约146秒演示视频 | [带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.0/demo.mp4)；本地文件为 `artifacts/cinematic-v1.2/demo-v1.2.mp4` |
+| 本轮约146秒演示视频 | [带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.1/demo.mp4)；本地文件为 `artifacts/cinematic-v1.2/demo-v1.2.mp4` |
 | AI使用与验证记录 | [AI_USAGE_AND_VERIFICATION.md](AI_USAGE_AND_VERIFICATION.md) |
 | 测试说明与原始证据 | [TESTING_AND_EVAL.md](TESTING_AND_EVAL.md)、[本轮原始结果](artifacts/professional-review/) |
 | 产品取舍及36项补齐清单 | [专业交付检查](docs/PROFESSIONAL_GAP_REVIEW.md) |
@@ -21,7 +21,7 @@
 
 ## 本轮交付状态
 
-当前交付为v1.2讲解版。最新产品入口另存于`CURRENT_PRODUCT_URL.txt`，视频元数据及验证结果见`artifacts/cinematic-v1.2/`。旧v1.1发布与历史测试保留；当前源码的云端检查以本次提交对应的GitHub Actions结果为准。
+当前交付为v1.2.1讲解版，视频与播放页均采用产品的浅色风格。最新产品入口另存于`CURRENT_PRODUCT_URL.txt`，视频元数据及验证结果见`artifacts/cinematic-v1.2/`。旧发布与历史测试保留；当前源码的云端检查以本次提交对应的GitHub Actions结果为准。
 
 本轮122项Python回归与16项前端逻辑测试通过。当前编译器的20条固定模型用例全部取得模型输出且字段匹配，失败网络批次独立保留。隔离环境中120条模拟任务通过真实调度器的首轮检查；在线备份在隔离位置完成恢复核验。
 

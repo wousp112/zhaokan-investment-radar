@@ -49,6 +49,10 @@ def main() -> None:
     verification = json.loads((MEDIA_DIR/'verification.json').read_text())
     if verification.get('sha256') != video_sha or not verification.get('technical_checks_passed'):
         raise ValueError('Run scripts/verify_demo.py against the final movie before packaging.')
+    theme = video_info.get('presentation_theme', {})
+    if (not verification.get('product_stylesheet_matches') or
+            theme.get('source_sha256') != hashlib.sha256((ROOT/'app/web/static/style.css').read_bytes()).hexdigest()):
+        raise ValueError('Rebuild and verify the movie after changing the product stylesheet.')
     source = zipfile.ZipFile(io.BytesIO(git('archive', '--format=zip', 'HEAD')))
     contents: dict[str, bytes] = {}
     for item in source.infolist():
@@ -69,7 +73,8 @@ def main() -> None:
     landing = f'''<!doctype html>
 <html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>照看 · 同花顺AIME笔试提交</title>
-<style>body{{font:17px/1.7 system-ui,sans-serif;max-width:860px;margin:48px auto;padding:0 24px}}a{{display:inline-block;margin:0 24px 12px 0}}video{{width:100%;max-height:680px}}small{{display:block;margin-top:24px}}</style>
+<link rel="stylesheet" href="app/web/static/style.css">
+<style>body{{max-width:1060px;margin:32px auto;padding:0 28px}}h1{{font-size:20px;padding-bottom:18px;border-bottom:1px solid var(--line)}}h2{{margin:20px 0 10px}}p{{margin:14px 0}}a{{display:inline-block;margin:0 24px 8px 0}}video{{display:block;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:8px;background:var(--surface)}}small{{display:block;margin-top:20px}}@media(max-width:780px){{body{{padding:0 16px;margin:20px auto}}}}</style>
 <h1>照看 · 投资监控与风险雷达</h1>
 <p>把关注条件写下来，核对后开启提醒；每次触发和未触发都有检查记录。</p>
 <p><a href="{escape(product_url, quote=True)}">打开交互产品</a><a href="https://github.com/wousp112/zhaokan-investment-radar">查看源码仓库</a><a href="SUBMISSION.md">完整提交说明</a></p>

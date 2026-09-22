@@ -5,25 +5,32 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="照看产品演示：跟着点击、旁白和放大画面，了解提醒条件、判断依据及异常恢复。">
 <title>产品演示 · 照看</title>
-<link rel="stylesheet" href="/static/demo-player.css?v=1.2">
+<link rel="stylesheet" href="/static/style.css?v=20260922-1">
+<link rel="stylesheet" href="/static/demo-player.css?v=1.2.1">
 <script defer src="/static/demo-player.js?v=1.2"></script>
 </head>
-<body>
-<a class="skip" href="#movie">跳到视频</a>
-<main>
-<header><a class="brand" href="/">照看</a><a href="/">打开交互产品</a></header>
-<section class="intro"><p class="eyebrow">产品演示 · 02:26</p><h1>从一条提醒，看到每一步判断</h1><p>写下条件，核对后开启。跟着画面看一次触发、公告补发和数据恢复。</p></section>
+<body class="demo-page">
+<a class="skip-link" href="#movie">跳到视频</a>
+<aside class="sidebar demo-sidebar" aria-label="演示导航">
+<a class="brand" href="/" aria-label="照看首页">照看<span class="workspace-label">个人工作台</span></a>
+<nav><a class="nav-item" href="/"><img src="/static/icons/bell.svg" alt="">返回工作台</a><a class="nav-item active" href="/static/demo.html" aria-current="page"><img src="/static/icons/help-circle.svg" alt="">产品演示</a></nav>
+</aside>
+<main class="demo-main">
+<header class="topbar"><span class="breadcrumb">照看</span><img class="breadcrumb-chevron" src="/static/icons/chevron-right.svg" alt=""><h1>产品演示</h1><a class="primary" href="/">打开交互产品</a></header>
+<div class="demo-content">
+<section class="section-intro"><span class="mode-tag replay">模拟数据</span><h2>从一条提醒，看到每一步判断</h2><p>写下条件，核对后开启。跟着画面看一次触发、公告补发和数据恢复。</p></section>
 <div class="movie-shell">
-<video id="movie" controls playsinline preload="metadata" poster="/static/demo-poster.jpg" aria-label="照看产品演示，包含中文旁白和字幕">
-<source src="/static/demo-v1.2.mp4" type="video/mp4">
-<p>浏览器未能播放视频。<a href="/static/demo-v1.2.mp4" download>下载 MP4 后播放</a>。</p>
+<video id="movie" controls playsinline preload="metadata" poster="/static/demo-poster.jpg?v=1.2.1" aria-label="照看产品演示，包含中文旁白和字幕">
+<source src="/static/demo-v1.2.mp4?v=1.2.1" type="video/mp4">
+<p>浏览器未能播放视频。<a href="/static/demo-v1.2.mp4?v=1.2.1" download>下载 MP4 后播放</a>。</p>
 </video>
 </div>
 <p id="video-error" role="alert" hidden>视频暂时无法加载。请刷新页面，或点击下方“下载视频”。</p>
-<div class="actions"><span>中文合成旁白 · 画面内已含字幕 · 1080p</span><a href="/static/demo-v1.2.mp4" download="照看-产品演示-v1.2.mp4">下载视频</a><a href="/static/demo-subtitles.srt" download>下载字幕</a></div>
+<div class="actions"><span>2分26秒 · 中文合成旁白 · 画面内已含字幕 · 1080p</span><a href="/static/demo-v1.2.mp4?v=1.2.1" download="照看-产品演示-v1.2.1.mp4">下载视频</a><a href="/static/demo-subtitles.srt" download>下载字幕</a></div>
 <section aria-labelledby="chapter-title"><div class="section-title"><h2 id="chapter-title">从感兴趣的部分开始</h2><p>点击章节可跳转，视频保持暂停或播放的原有状态。</p></div><div id="chapters" class="chapters"></div></section>
 <details class="transcript"><summary>查看完整讲解文字</summary><div id="transcript"></div></details>
 <footer><p>画面来自隔离演示环境的实际操作，行情使用模拟数据。点击标注与镜头运动为后期制作，部分等待过程已剪辑。</p><p>当前产品提供站内提醒。真实公告覆盖有限，公网体验仍依赖本机和临时通道。<a href="/">开始体验</a></p></footer>
+</div>
 </main>
 </body>
 </html>

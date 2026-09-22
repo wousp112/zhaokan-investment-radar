@@ -15,12 +15,13 @@ import hashlib
 import json
 import math
 import os
+import re
 from pathlib import Path
 import subprocess
 import wave
 
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from PIL import Image, ImageColor, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
 ART = ROOT / 'artifacts/cinematic-v1.2'
@@ -28,7 +29,24 @@ BUILD = ART / 'build'
 WIDTH, HEIGHT, FPS = 1920, 1080, 30
 UI_WIDTH, UI_HEIGHT = 1280, 720
 PANEL = (192, 78, 1536, 864)
-ACCENT = '#aaa4ff'
+PRODUCT_STYLE = ROOT / 'app/web/static/style.css'
+
+
+def product_theme(path: Path) -> dict[str, str]:
+    """Read the actual product palette; missing tokens must not silently drift."""
+    root = re.search(r':root\s*\{([^}]+)\}', path.read_text())
+    if root is None:
+        raise ValueError('The product stylesheet has no root theme.')
+    colors = dict(re.findall(r'--([\w-]+)\s*:\s*(#[0-9a-fA-F]{3}(?:[0-9a-fA-F]{3})?)\s*;', root[1]))
+    required = {'bg', 'sidebar', 'surface', 'line', 'text', 'muted', 'accent', 'accent-soft'}
+    if required - colors.keys():
+        raise ValueError('Product theme is incomplete: '+', '.join(sorted(required - colors.keys())))
+    return {key: colors[key] for key in sorted(required)}
+
+
+THEME = product_theme(PRODUCT_STYLE)
+ACCENT = THEME['accent']
+ACCENT_RGB = ImageColor.getrgb(ACCENT)
 FONT_PATH = os.environ.get('RADAR_CAPTION_FONT', '/System/Library/Fonts/STHeiti Medium.ttc')
 
 
@@ -126,7 +144,7 @@ def draw_cursor(draw, point, pulse=0.):
     if pulse > 0:
         radius = 15 + 26 * pulse
         draw.ellipse((x-radius, y-radius, x+radius, y+radius),
-                     outline=(172, 166, 255, int(220 * (1-pulse))), width=4)
+                     outline=(*ACCENT_RGB, int(220 * (1-pulse))), width=4)
     arrow = [(x,y), (x+4,y+31), (x+12,y+23), (x+21,y+40),
              (x+29,y+35), (x+19,y+19), (x+30,y+16)]
     draw.polygon([(a+2,b+2) for a,b in arrow], fill=(0,0,0,90))
@@ -230,37 +248,45 @@ def prepare_sources(chapters):
 
 
 def create_background():
-    yy, xx = np.mgrid[:HEIGHT, :WIDTH]
-    glow = np.exp(-(((xx-WIDTH*.62)/950)**2+((yy-HEIGHT*.28)/700)**2))
-    array = np.empty((HEIGHT,WIDTH,3), dtype=np.uint8)
-    for i, (base,gain) in enumerate(((14,15),(16,15),(25,28))):
-        array[:,:,i] = base + gain*glow
-    return Image.fromarray(array)
+    return Image.new('RGB', (WIDTH, HEIGHT), THEME['bg'])
 
 
 def graphics(frame, chapter, local, index):
     draw = ImageDraw.Draw(frame)
-    draw.text((130, 115), '照看', font=font(33), fill=ACCENT)
-    draw.text((130, 171), '投资监控与风险雷达', font=font(24), fill='#b4b5c6')
+    draw.text((130, 115), '照看', font=font(33), fill=THEME['text'])
+    draw.text((130, 171), '投资监控与风险雷达', font=font(24), fill=THEME['muted'])
+    draw.line((130, 231, 1790, 231), fill=THEME['line'], width=2)
     title = chapter['title']
-    for n, line in enumerate(wrap(title, 76, 1450)):
-        draw.text((126, 283+n*99), line, font=font(76), fill='#f5f5fc')
+    for n, line in enumerate(wrap(title, 58, 1450)):
+        draw.text((130, 297+n*82), line, font=font(58), fill=THEME['text'])
     if chapter['id'] == 'intro':
         steps = [('写下条件','公司 · 变化 · 时间'),('核对后开启','修改条件，确认生效'),('持续检查','减少重复打扰'),('查看依据','触发与未触发')]
         for i,(label,detail) in enumerate(steps):
             reveal = ease((local-i*.28)/.8)
             x=130+i*426
             y=535+round(28*(1-reveal))
-            draw.rounded_rectangle((x,y,x+390,y+196),radius=18,fill='#242635',outline='#424454',width=2)
+            draw.rounded_rectangle((x,y,x+390,y+196),radius=9,fill=THEME['surface'],outline=THEME['line'],width=2)
             draw.text((x+24,y+22), f'0{i+1}',font=font(22),fill=ACCENT)
-            draw.text((x+24,y+65),label,font=font(33),fill='#f3f3fa')
-            draw.text((x+24,y+124),detail,font=font(21),fill='#b7b9ca')
-        draw.text((132,804),'真实操作画面  /  模拟行情  /  中文合成旁白',font=font(23),fill='#9397af')
+            draw.text((x+24,y+65),label,font=font(33),fill=THEME['text'])
+            draw.text((x+24,y+124),detail,font=font(21),fill=THEME['muted'])
+        draw.text((132,804),'真实操作画面  /  模拟行情  /  中文合成旁白',font=font(23),fill=THEME['muted'])
     else:
-        draw.text((132,488),'写下关注条件，核对后开启。',font=font(40),fill='#d2d0f3')
-        draw.text((132,570),'到「提醒记录」查看发生了什么。',font=font(40),fill='#d2d0f3')
-        draw.rounded_rectangle((130,703,870,798),radius=16,fill='#35334c',outline='#6d688b',width=2)
-        draw.text((160,730),'当前提供站内提醒，真实公告覆盖有限。',font=font(27),fill='#e6e3f6')
+        draw.text((132,488),'写下关注条件，核对后开启。',font=font(40),fill=THEME['text'])
+        draw.text((132,570),'到「提醒记录」查看发生了什么。',font=font(40),fill=THEME['text'])
+        draw.rounded_rectangle((130,703,870,798),radius=9,fill=THEME['surface'],outline=THEME['line'],width=2)
+        draw.text((160,730),'当前提供站内提醒，真实公告覆盖有限。',font=font(27),fill=THEME['muted'])
+
+
+_panel_cache = None
+
+
+def render_panel(image, crop):
+    """Reuse an unchanged shot while its caption or progress indicator advances."""
+    global _panel_cache
+    if _panel_cache is None or _panel_cache[0] is not image or _panel_cache[1] != crop:
+        _panel_cache = (image, crop, image.transform(PANEL[2:], Image.Transform.EXTENT,
+                                                   crop, resample=Image.Resampling.BICUBIC))
+    return _panel_cache[2]
 
 
 def compose_frame(bg, chapter, local, index, chapters, sources, total):
@@ -299,13 +325,13 @@ def compose_frame(bg, chapter, local, index, chapters, sources, total):
                 image=sources['16-open.png'] if local<second+.8 else sources[chapter['after']]
                 crop=mix(camera((350,90,555,370),1.4),camera((350,390,555,270),1.42),ease((local-second)/.85))
         px,py,pw,ph=PANEL
-        panel=image.transform((pw,ph),Image.Transform.EXTENT,crop,resample=Image.Resampling.BICUBIC)
+        panel=render_panel(image,crop)
         frame.paste(panel,(px,py))
         draw=ImageDraw.Draw(frame,'RGBA')
-        draw.rounded_rectangle((px-2,py-2,px+pw+2,py+ph+2),radius=3,outline=(119,121,153,120),width=2)
-        draw.text((192,24),f'{index+1:02d}  {chapter["title"]}',font=font(26),fill='#ececf6')
+        draw.rounded_rectangle((px-2,py-2,px+pw+2,py+ph+2),radius=3,outline=THEME['line'],width=2)
+        draw.text((192,24),f'{index+1:02d}  {chapter["title"]}',font=font(26),fill=THEME['text'])
         label='模拟数据 · 实际操作画面'
-        draw.text((1728-font(20).getlength(label),29),label,font=font(20),fill='#b9b4d4')
+        draw.text((1728-font(20).getlength(label),29),label,font=font(20),fill=THEME['muted'])
         if rect and local<click_time+1.05:
             point=center(rect)
             travel=ease((local-.15)/max(.3,click_time-.25))
@@ -317,7 +343,7 @@ def compose_frame(bg, chapter, local, index, chapters, sources, total):
                 if click_time-.45<local<click_time+.25:
                     left,top=map_point((rect[0],rect[1]),crop)
                     right,bottom=map_point((rect[0]+rect[2],rect[1]+rect[3]),crop)
-                    draw.rounded_rectangle((left-4,top-4,right+4,bottom+4),radius=6,outline=(159,148,255,220),width=3)
+                    draw.rounded_rectangle((left-4,top-4,right+4,bottom+4),radius=6,outline=(*ACCENT_RGB,220),width=3)
         if chapter['id']=='feedback' and chapter.get('feedback_rect'):
             second=chapter['captions'][1]['local_start']
             if second+.8<local<second+1.55:
@@ -331,13 +357,13 @@ def compose_frame(bg, chapter, local, index, chapters, sources, total):
         raise ValueError('Caption exceeds two lines: '+caption)
     y=976 if len(lines)==2 else 995
     for line in lines:
-        draw.text(((WIDTH-font(32).getlength(line))/2,y),line,font=font(32),fill='#f4f4fb')
+        draw.text(((WIDTH-font(32).getlength(line))/2,y),line,font=font(32),fill=THEME['text'])
         y+=40
     progress=(chapter['start']+local)/total
-    draw.rectangle((0,1075,round(WIDTH*progress),1079),fill='#a79fff')
+    draw.rectangle((0,1075,round(WIDTH*progress),1079),fill=ACCENT)
     for c in chapters[1:]:
         x=round(WIDTH*c['start']/total)
-        draw.line((x,1074,x,1079),fill='#151721',width=3)
+        draw.line((x,1074,x,1079),fill=THEME['bg'],width=3)
     return frame
 
 
@@ -442,6 +468,8 @@ def main():
               'capture':'Sequential verified UI captures and short captured UI transitions; postproduction cursor, click rings and camera motion. Not an uninterrupted screen recording.',
               'source_viewport':[1280,720],'source_mode':'isolated simulated data',
               'captured_ui_sha256':json.loads((ART/'capture-selected/manifest.json').read_text())['captured_ui_sha256'],
+              'presentation_theme':{'source':str(PRODUCT_STYLE.relative_to(ROOT)),
+                                    'source_sha256':sha(PRODUCT_STYLE),'colors':THEME,'color_scheme':'light'},
               'caption_count':len(captions),'chapter_count':len(chapters),'measured_click_count':len(click_times),
               'click_times':click_times,'chapters':public_chapters,
               'sources':[{'file':name,'sha256':sha(ART/name),'original_size':list(Image.open(ART/name).size)}

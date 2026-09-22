@@ -7,9 +7,9 @@
   "fps": 30,
   "caption_count": 32,
   "chapter_count": 16,
-  "verified_at": "2026-09-21T23:54:15.613312+00:00",
-  "sha256": "0bc8270942a26c3b804bd1f2273ffdcc17fd5829e73cff38466ced0b87082d8c",
-  "size_bytes": 7563028,
+  "verified_at": "2026-09-22T00:36:55.552793+00:00",
+  "sha256": "1366412b777359e8930db8e02b52274ee4b1a4038b1a9735093892e97c82e547",
+  "size_bytes": 7400027,
   "decode_verified": true,
   "source_hashes_verified": true,
   "narration_lufs": -16.12,
@@ -17,5 +17,6 @@
   "script_caption_match": true,
   "measured_click_count": 11,
   "technical_checks_passed": true,
+  "product_stylesheet_matches": true,
   "scope": "Encoded media, captions, source hashes and audio levels. Subjective voice quality requires listening."
 }

@@ -15,6 +15,11 @@ def main():
     digest=hashlib.sha256(video.read_bytes()).hexdigest()
     if digest != report['sha256'] or not report.get('technical_checks_passed'):
         raise RuntimeError('Validate the final movie before installing it.')
+    metadata=json.loads((SOURCE/'demo-video.json').read_text())
+    if (not report.get('product_stylesheet_matches') or
+            metadata.get('presentation_theme',{}).get('source_sha256') !=
+            hashlib.sha256((TARGET/'style.css').read_bytes()).hexdigest()):
+        raise RuntimeError('The movie must match the current product stylesheet before installation.')
     mapping={'demo-v1.2.mp4':'demo-v1.2.mp4','poster.jpg':'demo-poster.jpg',
              'chapters.json':'demo-chapters.json','demo.srt':'demo-subtitles.srt',
              'demo.vtt':'demo-subtitles.vtt'}
