@@ -5,6 +5,7 @@
 | 提交物 | 入口 |
 | --- | --- |
 | 可交互Web产品 | [打开照看](https://exhibitions-vienna-extending-liberty.trycloudflare.com) |
+| 产品需求与技术实现 | [PRD.md](PRD.md) · [TECH_SPEC.md](TECH_SPEC.md) |
 | 完整源代码与README | [GitHub仓库](https://github.com/wousp112/zhaokan-investment-radar) |
 | 本轮约146秒演示视频 | [带章节的播放器](https://exhibitions-vienna-extending-liberty.trycloudflare.com/static/demo.html) · [下载视频](https://github.com/wousp112/zhaokan-investment-radar/releases/download/v1.2.1/demo.mp4)；本地文件为 `artifacts/cinematic-v1.2/demo-v1.2.mp4` |
 | AI使用与验证记录 | [AI_USAGE_AND_VERIFICATION.md](AI_USAGE_AND_VERIFICATION.md) |
